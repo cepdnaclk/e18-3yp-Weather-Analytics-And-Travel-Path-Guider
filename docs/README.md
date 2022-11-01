@@ -14,9 +14,10 @@ title: Weather Analytics and Travel Path Guider
 ---
 
 ## Team
--  E/18/098, Fernando K.A.I. , [email](mailto:e18098@eng.pdn.ac.lk)
--  E/18/100, Fernando K.N.A. , [email](mailto:e18100@eng.pdn.ac.lk)
--  E/18/155, Jayasundara J.W.K.R.B. , [email](mailto:e18155@eng.pdn.ac.lk)
+
+- E/18/098, Fernando K.A.I. , [e18098@eng.pdn.ac.lk](mailto:e18098@eng.pdn.ac.lk)
+- E/18/100, Fernando K.N.A. , [e18100@eng.pdn.ac.lk](mailto:e18100@eng.pdn.ac.lk)
+- E/18/155, Jayasundara J.W.K.R.B. , [e18155@eng.pdn.ac.lk](mailto:e18155@eng.pdn.ac.lk)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
@@ -25,8 +26,9 @@ title: Weather Analytics and Travel Path Guider
 ![Sample Image](./images/sample.png)
 
 #### Table of Contents
+
 1. [Introduction](#introduction)
-2. [Solution Architecture](#solution-architecture )
+2. [Solution Architecture](#solution-architecture)
 3. [Hardware & Software Designs](#hardware-and-software-designs)
 4. [Testing](#testing)
 5. [Detailed budget](#detailed-budget)
@@ -36,7 +38,6 @@ title: Weather Analytics and Travel Path Guider
 ## Introduction
 
 Description of the real world problem and solution, impact
-
 
 ## Solution Architecture
 
@@ -54,9 +55,9 @@ Testing done on hardware and software, detailed + summarized results
 
 All items and costs
 
-| Item          | Quantity  | Unit Cost  | Total  |
-| ------------- |:---------:|:----------:|-------:|
-| Sample item   | 5         | 10 LKR     | 50 LKR |
+| Item        | Quantity | Unit Cost |  Total |
+| ----------- | :------: | :-------: | -----: |
+| Sample item |    5     |  10 LKR   | 50 LKR |
 
 ## Conclusion
 
@@ -64,10 +65,10 @@ What was achieved, future developments, commercialization plans
 
 ## Links
 
-- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="_blank"}
-- [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="_blank"}
+- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="\_blank"}
+- [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="\_blank"}
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
-[//]: # (Please refer this to learn more about Markdown syntax)
-[//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[//]: # "Please refer this to learn more about Markdown syntax"
+[//]: # "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
