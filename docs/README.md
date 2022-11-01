@@ -3,26 +3,26 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and project title
-repository-name: eYY-3yp-project-template
-title: Project Template
+repository-name: e18-3yp-Weather-Analytics-And-Travel-Path-Guider
+title: Weather Analytics and Travel Path Guider
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Weather Analytics and Travel Path Guider
 
 ---
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/18/098, Fernando K.A.I. , [email](mailto:e18098@eng.pdn.ac.lk)
+-  E/18/100, Fernando K.N.A. , [email](mailto:e18100@eng.pdn.ac.lk)
+-  E/18/155, Jayasundara J.W.K.R.B. , [email](mailto:e18155@eng.pdn.ac.lk)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
 <!-- This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/) -->
 
-<!-- ![Sample Image](./images/sample.png) -->
+![Sample Image](./images/sample.png)
 
 #### Table of Contents
 1. [Introduction](#introduction)
