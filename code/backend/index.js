@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 // when connected to broker, subscribe to topic
 mqttClient.on('connect', function () {
-  mqttClient.subscribe('presence', function (err) {
+  mqttClient.subscribe('test', function (err) {
     if (!err) {
       console.log("MQTT Connected");
     }
