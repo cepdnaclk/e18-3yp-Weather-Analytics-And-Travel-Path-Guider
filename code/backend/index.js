@@ -7,7 +7,7 @@ const port = process.env.PORT
 
 // connect to mqtt broker
 const mqttClient = mqtt.connect(process.env.MQTT_URL, options = {
-  clientId: "nodeServer1",
+  clientId: process.env.CLIENT_ID,
   username: process.env.USERNAME,
   password: process.env.PASSWORD,
   clean: true
@@ -30,10 +30,12 @@ mqttClient.on('connect', function () {
   })
 })
 
+let count = 0;
+
 // when a new msg arrives on mqtt
 mqttClient.on('message', function (topic, message) {
   // message is Buffer
-  data[topic] = message.toString()
+  data[topic + count++] = message.toString()
   console.log(topic, message.toString())
 })
 
