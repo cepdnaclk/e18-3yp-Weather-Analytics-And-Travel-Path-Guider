@@ -1,12 +1,43 @@
 const express = require('express')
+const mqtt = require('mqtt')
+require('dotenv').config()
+
 const app = express()
-const port = 8080
+const port = process.env.PORT
+
+// connect to mqtt broker
+const mqttClient = mqtt.connect(process.env.MQTT_URL, options = {
+  clientId: "nodeServer1",
+  username: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  clean: true
+});
+
+data = {}
+
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-  console.log('Page requested');
+  res.send(data);
+  console.log('Page requested ' + req.url);
 })
 
+// when connected to broker, subscribe to topic
+mqttClient.on('connect', function () {
+  mqttClient.subscribe('presence', function (err) {
+    if (!err) {
+      console.log("MQTT Connected");
+    }
+  })
+})
+
+// when a new msg arrives on mqtt
+mqttClient.on('message', function (topic, message) {
+  // message is Buffer
+  data[topic] = message.toString()
+  console.log(topic, message.toString())
+})
+
+// start web server
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
