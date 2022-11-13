@@ -1,43 +1,23 @@
 const express = require('express')
-const mqtt = require('mqtt')
+const mqtt = require('./mqtt')
+const mongoose = require('mongoose');
 require('dotenv').config()
 
-const app = express()
 const port = process.env.PORT
 
-// connect to mqtt broker
-const mqttClient = mqtt.connect(process.env.MQTT_URL, options = {
-  clientId: process.env.CLIENT_ID,
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  clean: true
-});
+// db
+mongoose.connect(process.env.MONGO_URL);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-data = {}
+// mqtt
+mqtt.run();
 
+// express
+const app = express()
 
-app.get('/', (req, res) => {
-  res.send(data);
-  console.log('Page requested ' + req.url);
-})
-
-// when connected to broker, subscribe to topic
-mqttClient.on('connect', function () {
-  mqttClient.subscribe('test', function (err) {
-    if (!err) {
-      console.log("MQTT Connected");
-    }
-  })
-})
-
-let count = 0;
-
-// when a new msg arrives on mqtt
-mqttClient.on('message', function (topic, message) {
-  // message is Buffer
-  data[topic + count++] = message.toString()
-  console.log(topic, message.toString())
-})
+const home = require('./routes/root')
+app.use('/', home);
 
 // start web server
 app.listen(port, () => {
