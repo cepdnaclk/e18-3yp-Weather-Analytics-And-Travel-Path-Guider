@@ -21,7 +21,6 @@ function run() {
         })
     })
 
-    let count = 0;
 
     // when a new msg arrives on mqtt
     mqttClient.on('message', function (topic, message) {
@@ -36,4 +35,5 @@ function run() {
         }).save();
     })
 }
+
 module.exports = { run }

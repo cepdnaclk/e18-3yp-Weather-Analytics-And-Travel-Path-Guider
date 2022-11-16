@@ -3,4 +3,6 @@ function getDateTime() {
     return datetime.toISOString();
 }
 
-module.exports = { getDateTime }
+module.exports = {
+    getDateTime
+}
