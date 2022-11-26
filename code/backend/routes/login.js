@@ -1,16 +1,20 @@
 const router = require("express").Router();
+const { UserModel } = require("../models/Users");
+const bcrypt = require("bcryptjs");
 
 const jwtHelper = require("../middlewares/jwt");
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     console.log('Page requested /login' + req.url);
-    if (req.body.username == "ishanfdo1" && req.body.password == "password") {
+    const userFromDB = await UserModel.findOne({ email: req.body.email });
+
+    if (bcrypt.compareSync(req.body.password, userFromDB.password)) {
         res.send({
             "token": jwtHelper.generateAccessToken({ username: req.body.username }),
             "username": req.body.username
         });
     } else {
-        res.sendStatus(401);
+        res.status(401).send("Invalid credentials");
     }
 })
 

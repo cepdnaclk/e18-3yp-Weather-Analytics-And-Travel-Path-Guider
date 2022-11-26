@@ -21,6 +21,9 @@ app.use('/', home);
 const login = require('./routes/login')
 app.use('/login', login);
 
+const seed = require('./routes/seed')
+app.use('/seed', seed);
+
 // start web server
 const port = process.env.PORT
 app.listen(port, () => {
