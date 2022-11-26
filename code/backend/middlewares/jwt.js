@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 // https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs
-function generateAccessToken(username) {
-    return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+function generateAccessToken(data) {
+    return jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '3600s' });
 }
 
 function authenticateToken(req, res, next) {
@@ -11,13 +11,12 @@ function authenticateToken(req, res, next) {
 
     if (token == null) return res.sendStatus(401)
 
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         console.log(err)
 
         if (err) return res.sendStatus(403)
-
-        req.user = user
-
+        
+        req.jwtData = user
         next()
     })
 }

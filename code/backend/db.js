@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-function connectDB() {
-    mongoose.connect(process.env.MONGO_URL);
+async function connectDB() {
+    await mongoose.connect(process.env.MONGO_URL);
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, "MongoDB connection error:"));
     db.on("connected", () => {
@@ -9,4 +9,8 @@ function connectDB() {
     });
 }
 
-module.exports = { connectDB };
+async function disconnectDB() {
+    await mongoose.connection.close();
+}
+
+module.exports = { connectDB, disconnectDB };
