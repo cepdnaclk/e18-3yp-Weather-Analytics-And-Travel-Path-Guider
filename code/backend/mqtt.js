@@ -10,7 +10,6 @@ function run() {
         clean: true
     });
 
-
     // when connected to broker, subscribe to topic
     mqttClient.on('connect', function () {
         mqttClient.subscribe('test', function (err) {

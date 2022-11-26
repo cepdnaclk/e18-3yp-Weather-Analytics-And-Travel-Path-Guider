@@ -7,7 +7,7 @@ import json
 import datetime
 import time
 
-load_dotenv("../.env")
+load_dotenv("../../.env")
 
 broker = "weatheranalytics.tk"
 port = 1883
