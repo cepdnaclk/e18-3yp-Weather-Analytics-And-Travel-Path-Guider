@@ -1,13 +1,12 @@
 const mqtt = require('mqtt')
 const helper = require('./helper');
 const { SensorData } = require('./models/SensorData');
-
 function run() {
     // connect to mqtt broker
     const mqttClient = mqtt.connect(process.env.MQTT_URL, options = {
-        clientId: process.env.CLIENT_ID,
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
+        clientId: process.env.MQTT_CLIENT_ID,
+        username: process.env.MQTT_USERNAME,
+        password: process.env.MQTT_PASSWORD,
         clean: true
     });
 
