@@ -12,7 +12,9 @@ mqtt.run();
 
 // express
 const app = express()
+app.use(express.json()); // parse req body json
 
+// routes
 const home = require('./routes/root')
 app.use('/', home);
 
