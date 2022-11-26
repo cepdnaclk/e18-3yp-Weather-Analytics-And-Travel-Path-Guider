@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     console.log('Page requested /login' + req.url);
     const userFromDB = await Users.findOne({ email: req.body.email });
 
-    if (bcrypt.compareSync(req.body.password, userFromDB.password)) {
+    if (userFromDB && bcrypt.compareSync(req.body.password, userFromDB.password)) {
         res.send({
             "token": jwtHelper.generateAccessToken({ username: req.body.username }),
             "username": req.body.username
