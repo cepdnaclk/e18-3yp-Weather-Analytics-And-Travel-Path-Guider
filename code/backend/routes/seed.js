@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { UserModel } = require("../models/Users");
+const { Users } = require("../models/Users");
 const bcrypt = require("bcryptjs");
 
 router.get("/", async (req, res) => {
@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         password: await bcrypt.hash("password", 10),
         name: "Ishan",
     }
-    UserModel.create(data, (err, data) => {
+    Users.create(data, (err, data) => {
         if (err) {
             res.send("Error: maybe it already exists");
             return console.error(err);
