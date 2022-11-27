@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 // https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs
+
 function generateAccessToken(data) {
     return jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '3600s' });
 }

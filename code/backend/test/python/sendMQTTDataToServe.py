@@ -25,18 +25,28 @@ print(os.environ.get("MQTT_USERNAME"), os.getenv("MQTT_PASSWORD"))
 
 client1.connect(broker, port)  # establish connection
 
-ret = client1.publish("test", "on")  # publish
+# ret = client1.publish("test", "on")  # publish
 
 while True:
     data = {}
 
     # need to send only the data we need. here only a sample is sent
-    data["temperature"] = 25
-    data["humidity"] = 50
-    data["pressure"] = 1000
-    data["windSpeed"] = 10
-    data["windDirection"] = 180
-    data["rainfall"] = 0
+    # location: String,
+    # device_id: String,
+    # topic: String,
+    # temperature: String,
+    # humidity: String,
+    # isRaining: Boolean,
+    # lightIntensity: String,
+    # windSpeed: String,
+    data["location"] = "no location"
+    data["device_id"] = 0
+    data["topic"] = "test"
+    data["temperature"] = 30
+    data["humidity"] = 80
+    data["isRaining"] = 1
+    data["lightIntensity"] = 125
+    data["windSpeed"] = 125
     data["time"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     client1.publish("test", json.dumps(data))

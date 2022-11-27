@@ -26,12 +26,22 @@ function run() {
         console.log(helper.getDateTime() + ": MQTT msg received: Topic: " + topic + ", message: " + message.toString())
         mqttClient.publish("confirm", "got the msg");
 
+        // location: String,
+        // device_id: String,
+        // topic: String,
+        // temperature: String,
+        // humidity: String,
+        // isRaining: Boolean,
+        // lightIntensity: String,
+        // windSpeed: String,
+        // const msg = message.toString()
+        const data = JSON.parse(message.toString())
+        // console.log(data);
         new SensorData({
             'dateTime': helper.getDateTime(),
-            'topic': topic,
-            'msg': message.toString()
+            ...data
         }).save();
     })
 }
 
-module.exports = { run }
+module.exports = { run } 

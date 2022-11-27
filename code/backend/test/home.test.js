@@ -22,7 +22,7 @@ describe('Root route', () => {
 
     it('Clearing data in db', async () => {
         await request('http://localhost:' + process.env.PORT).get('/clear').expect(200);
-        const allData = await SensorData.find()
-        expect(allData.length).toEqual(0);
+        const allData = await SensorData.findOne()
+        expect(allData).toBeNull();
     })
 })
