@@ -9,15 +9,20 @@ router.get("/", async (req, res) => {
 
     const dataUsers = {
         email: "ishanfdo1@gmail.com",
+        username: "ishanfdo1",
         password: await bcrypt.hash("password", 10),
         name: "Ishan",
     }
     const dataSensors = {
         dateTime: helper.getDateTime(),
+        location: "no location",
+        device_id: "python script",
         topic: "test",
-        msg: "empty msg",
-        sensorType: "test sensor type",
-
+        temperature: "24",
+        humidity: 78,
+        isRaining: 0,
+        lightIntensity: 156,
+        windSpeed: 12,
     }
     try {
         const resultSensors = await SensorData.create(dataSensors);

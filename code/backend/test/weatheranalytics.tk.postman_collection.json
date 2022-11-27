@@ -96,6 +96,51 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Seed DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/seed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"seed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ishanfdo12\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"ishanfdo123@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

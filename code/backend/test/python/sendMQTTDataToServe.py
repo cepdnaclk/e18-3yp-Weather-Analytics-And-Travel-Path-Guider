@@ -14,7 +14,7 @@ port = 1883
 
 
 def on_publish(client, userdata, result):  # create function for callback
-    print("data published \n")
+    print("data published " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     pass
 
 

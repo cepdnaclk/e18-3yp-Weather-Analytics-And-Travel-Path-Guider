@@ -21,6 +21,9 @@ app.use('/', home);
 const login = require('./routes/login')
 app.use('/login', login);
 
+const signup = require('./routes/signup')
+app.use('/signup', signup);
+
 const seed = require('./routes/seed')
 app.use('/seed', seed);
 
