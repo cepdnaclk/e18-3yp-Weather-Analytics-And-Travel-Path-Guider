@@ -24,5 +24,7 @@ describe('Root route', () => {
         await request('http://localhost:' + process.env.PORT).get('/clear').expect(200);
         const allData = await SensorData.findOne()
         expect(allData).toBeNull();
+
+        await request('http://localhost:' + process.env.PORT).get('/seed').expect(200);
     })
 })
