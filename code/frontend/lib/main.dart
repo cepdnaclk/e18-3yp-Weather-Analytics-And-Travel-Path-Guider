@@ -3,6 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/signUpScreen.dart';
+
+// screens
+import 'screens/loginScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Welcome to Flutter'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+        body: SignUpScreen(),
       ),
     );
   }
 }
-
