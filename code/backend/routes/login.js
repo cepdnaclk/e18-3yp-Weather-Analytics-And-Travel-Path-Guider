@@ -6,10 +6,10 @@ const jwtHelper = require("../middlewares/jwt");
 
 router.post('/', async (req, res) => {
     console.log('Page requested /login' + req.url);
-    const userFromDB = await Users.findOne({ email: req.body.email });
+    const userFromDB = await Users.findOne({ username: req.body.username });
 
     if (userFromDB && bcrypt.compareSync(req.body.password, userFromDB.password)) {
-        res.send({
+        res.status(200).send({
             "token": jwtHelper.generateAccessToken({ username: req.body.username }),
             "username": req.body.username
         });

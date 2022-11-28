@@ -19,7 +19,7 @@ afterAll(async () => {
 describe('Login route', () => {
     it('Login works and checkToken works', async () => {
         const res = await request('http://localhost:' + process.env.PORT).post('/login').send({
-            email: "ishanfdo1@gmail.com",
+            username: "ishanfdo1",
             password: "password"
         })
         expect(res.statusCode).toEqual(200);
