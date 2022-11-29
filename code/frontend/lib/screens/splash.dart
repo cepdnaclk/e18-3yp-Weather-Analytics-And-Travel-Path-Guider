@@ -15,10 +15,10 @@ class Splash extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashScreen(
-        seconds: 8,
+        seconds: 4,
         navigateAfterSeconds:Welcome(),
         title: Text(
-          'SplashScreen Example',
+          'Welcome to WhetherTravel',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.0,

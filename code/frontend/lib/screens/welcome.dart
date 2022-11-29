@@ -16,49 +16,27 @@ class _WelcomePageState extends State<Welcome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: const TextSpan(
-              text: 'T',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-              children: [
-                TextSpan(
-                  text: 'al',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                  ),
-                ),
-                TextSpan(
-                  text: 'k',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-                TextSpan(
-                  text: 'lin',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                  ),
-                ),
-                TextSpan(
-                  text: 'e',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-              ],
-            ),
+          title: Center(
+            child : Text("Whether Travel"),
+          ) ,
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {},
           ),
-        ),
+          actions: <Widget> [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () {},
+            ),
+          ],
+          flexibleSpace: Image.asset(
+              "assets/bg.png",
+          fit: BoxFit.cover,
+          ),
         elevation: 0,
         backgroundColor: Colors.lightBlue,
       ),
