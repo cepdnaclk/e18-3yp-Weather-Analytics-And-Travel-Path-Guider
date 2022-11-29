@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/homeScreen.dart';
 import 'package:frontend/screens/signUpScreen.dart';
 
 // screens
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
-        body: SignUpScreen(),
+        body: LoginScreen(),
       ),
     );
   }
