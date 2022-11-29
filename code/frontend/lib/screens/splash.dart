@@ -24,8 +24,11 @@ class Splash extends StatelessWidget {
               fontSize: 20.0,
               color: Colors.white),
         ),
+        image: Image.asset("/logo.png",
+          scale : 0.2),
         backgroundColor: Colors.lightBlue[200],
       )
+  
     );
   }
 }
