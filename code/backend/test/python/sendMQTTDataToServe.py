@@ -39,7 +39,7 @@ while True:
     # isRaining: Boolean,
     # lightIntensity: String,
     # windSpeed: String,
-    data["location"] = "no location"
+    data["location"] = "Ridma's Macbook"
     data["device_id"] = 0
     data["topic"] = "test"
     data["temperature"] = 30
