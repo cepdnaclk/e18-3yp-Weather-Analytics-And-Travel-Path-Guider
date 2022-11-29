@@ -5,12 +5,17 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/homeScreen.dart';
 import 'package:frontend/screens/signUpScreen.dart';
+import 'package:device_preview/device_preview.dart';
 
 // screens
 import 'screens/loginScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+    );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,8 +23,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Welcome to Flutter',
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      title: 'Welcome to WhetherTravel',
       home: Scaffold(
         body: LoginScreen(),
       ),
