@@ -9,6 +9,7 @@ import 'package:device_preview/device_preview.dart';
 
 // screens
 import 'screens/loginScreen.dart';
+import 'screens/splash.dart';
 
 void main() {
   runApp(
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       title: 'Welcome to WhetherTravel',
       home: Scaffold(
-        body: LoginScreen(),
+        body: Splash(),
       ),
     );
   }
