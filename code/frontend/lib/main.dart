@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:frontend/screens/homeScreen.dart';
-import 'package:frontend/screens/signUpScreen.dart';
+import 'package:WhetherTravel/screens/homeScreen.dart';
+import 'package:WhetherTravel/screens/signUpScreen.dart';
 import 'package:device_preview/device_preview.dart';
 
 // screens

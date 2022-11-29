@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/api/routes.dart';
-import 'package:frontend/screens/signUpScreen.dart';
+import 'package:WhetherTravel/api/routes.dart';
+import 'package:WhetherTravel/screens/signUpScreen.dart';
 import '../globals.dart' as globals;
 import 'homeScreen.dart';
 
