@@ -15,19 +15,27 @@ class Splash extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashScreen(
-        seconds: 4,
+        seconds: 6,
         navigateAfterSeconds:Welcome(),
+        image: new Image.asset('logo_big.png'),
+        photoSize: 100.0,
+        backgroundColor: Colors.blue,
+        styleTextUnderTheLoader: new TextStyle(),
+        loaderColor: Colors.white,
+
         title: Text(
           'Welcome to WhetherTravel',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 25.0,
               color: Colors.white),
         ),
-        image: Image.asset("/logo.png",
-          scale : 0.2),
-        backgroundColor: Colors.lightBlue[200],
+
       )
+        // image: Image.asset("logo_big.png"),
+        // backgroundColor: Colors.lightBlue[200],
+      // )
+        
   
     );
   }

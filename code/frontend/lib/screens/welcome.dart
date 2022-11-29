@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:WhetherTravel/screens/visit.dart';
 import 'package:WhetherTravel/screens/loginScreen.dart';
 import 'package:WhetherTravel/screens/signUpScreen.dart';
 
@@ -17,7 +18,7 @@ class _WelcomePageState extends State<Welcome> {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-            child : Text("Whether Travel"),
+            child : Text("WhetherTravel"),
           ) ,
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -33,14 +34,16 @@ class _WelcomePageState extends State<Welcome> {
               onPressed: () {},
             ),
           ],
-          flexibleSpace: Image.asset(
-              "assets/bg.png",
-          fit: BoxFit.cover,
-          ),
+          // flexibleSpace: Image.asset(
+          //     "assets/bg.png",
+          // fit: BoxFit.cover,
+          // ),
         elevation: 0,
         backgroundColor: Colors.lightBlue,
       ),
+      backgroundColor: Colors.blue,
       body: SingleChildScrollView(
+
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           height: MediaQuery.of(context).size.height,
@@ -50,7 +53,7 @@ class _WelcomePageState extends State<Welcome> {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.shade200,
+                color: Colors.blue,
                 offset: const Offset(2, 4),
                 blurRadius: 5,
                 spreadRadius: 2,
@@ -74,14 +77,14 @@ class _WelcomePageState extends State<Welcome> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
+                      builder: (context) => const Visit(),
                     ),
                   );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.symmetric(
-                    vertical: 15,
+                    vertical: 20,
                   ),
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -102,7 +105,7 @@ class _WelcomePageState extends State<Welcome> {
                     color: Colors.white,
                   ),
                   child: const Text(
-                    'Login',
+                    'Visit WhetherTravel',
                     style: TextStyle(
                       fontSize: 20,
                       color: Color(
@@ -142,7 +145,46 @@ class _WelcomePageState extends State<Welcome> {
                     ),
                   ),
                   child: const Text(
-                    'Register now',
+                    'Sign Up',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 13,
+                  ),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        15,
+                      ),
+                    ),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2,
+                    ),
+                  ),
+                  child: const Text(
+                    'Sign In',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
