@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:frontend/API/response_models.dart';
+import 'package:WhetherTravel/API/response_models.dart';
 import 'package:http/http.dart' as http;
 import '../globals.dart' as globals;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/API/routes.dart';
+import 'package:WhetherTravel/API/routes.dart';
 import '../globals.dart' as globals;
 import 'homeScreen.dart';
 

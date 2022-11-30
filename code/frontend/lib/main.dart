@@ -3,12 +3,13 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:frontend/screens/homeScreen.dart';
-import 'package:frontend/screens/signUpScreen.dart';
+import 'package:WhetherTravel/screens/homeScreen.dart';
+import 'package:WhetherTravel/screens/signUpScreen.dart';
 import 'package:device_preview/device_preview.dart';
 
 // screens
 import 'screens/loginScreen.dart';
+import 'screens/splash.dart';
 
 void main() {
   runApp(
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       title: 'Welcome to WhetherTravel',
       home: Scaffold(
-        body: LoginScreen(),
+        body: Splash(),
       ),
     );
   }
