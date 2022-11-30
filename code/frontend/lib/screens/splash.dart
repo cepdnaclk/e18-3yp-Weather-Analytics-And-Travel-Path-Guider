@@ -15,7 +15,7 @@ class Splash extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashScreen(
-        seconds: 6,
+        seconds: 2,
         navigateAfterSeconds:Welcome(),
         image: new Image.asset('logo_big.png'),
         photoSize: 100.0,

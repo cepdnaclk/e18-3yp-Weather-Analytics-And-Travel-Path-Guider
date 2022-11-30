@@ -48,19 +48,30 @@ class Visit extends StatelessWidget {
               onPressed: () {},
             ),
           ],
-          flexibleSpace: Image.asset(
-            "assets/bg.png",
-            fit: BoxFit.cover,
-          ),
         ),
         body : Center(
-          child : Text(
-            "Weather Analytics and Travel Path Guider",
-            style: TextStyle(fontSize: 30.0),
-          ),
+          child: Column(
+            children: <Widget>[
+              Image.asset('assets/hanthana1.jpg',
+                  height: 300,
+                  width: 300,
+                  //scale: 2.5,
+                  // color: Color.fromARGB(255, 15, 147, 59),
+                  // opacity:
+                  // const AlwaysStoppedAnimation<double>(0.5)
+              ), //Image.asset
+              Image.asset(
+                'assets/meemure1.jpg',
+                height: 300,
+                width: 300,
+              ), // Image.asset
+            ], //<Widget>[]
+          ), //Column
         ),
+
       ),
     );
   }
 }
+
 

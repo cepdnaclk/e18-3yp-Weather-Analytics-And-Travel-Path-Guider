@@ -42,6 +42,7 @@ dependencies:
   flutter_screenutil: ^5.6.0
   get: ^4.6.5
   flutter_svg: ^1.1.6
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,8 @@ flutter:
     - assets/bg.png
     - assets/logo.png
     - assets/logo_big.png
+    - assets/hanthana1.jpg
+    - assets/meemure1.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
