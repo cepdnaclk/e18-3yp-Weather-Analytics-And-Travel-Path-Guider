@@ -2,6 +2,11 @@
 #include <unity.h>
 #include <Header.hpp>
 
+// DHT11
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+#include <DHT_U.h>
+
 
 // void setUp(void)
 // {
@@ -49,6 +54,12 @@ void loop()
 {
   if (i < max_blinks)
   {
+    
+    // DHT11
+    RUN_TEST(test_temperature);
+    RUN_TEST(test_humidity);
+    
+    
     RUN_TEST(test_led_state_high);
     delay(500);
     RUN_TEST(test_led_state_low);
