@@ -1,4 +1,10 @@
- Instructions for adding tests :
+#Instructions for connecting sensors to Arduino UNO to "PASS" tests 
+
+Pin 2 - DHT11
+ 
+ 
+ 
+#Instructions for adding tests :
 
 1. Create separate test files for each item with functions
 2. Include above function declarations in Header.hpp
