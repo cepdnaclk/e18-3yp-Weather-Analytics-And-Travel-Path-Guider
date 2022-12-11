@@ -9,8 +9,8 @@ void test_led_state_high(void);
 void test_led_state_low(void);
 
 // DHT11
+void initDHT11();
 void test_temperature(void);
 void test_humidity(void);
-
 
 #endif
