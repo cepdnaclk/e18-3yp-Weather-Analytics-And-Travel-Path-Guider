@@ -9,7 +9,7 @@ const SensorDataSchema = new Schema({
     topic: String,
     temperature: String,
     humidity: String,
-    isRaining: Boolean,
+    isRaining: String,
     lightIntensity: String,
     windSpeed: String,
 });
