@@ -6,6 +6,7 @@
 #define TINY_GSM_MODEM_SIM800 // Do not remove this line. It is used to select the correct modem by the TinyGSM library.
 #include <TinyGsmClient.h>
 #include <PubSubClient.h>
+#include <string.h>
 
 // DHT11
 #define DHTPIN A3
@@ -32,6 +33,17 @@ const char *topicOut = "test";
 TinyGsm modem(SIM800A);
 TinyGsmClient client(modem);
 PubSubClient mqtt(client);
+
+char *strcat_CUSTOM(char *dest, const char *src)
+{
+  size_t i, j;
+  for (i = 0; dest[i] != '\0'; i++)
+    ;
+  for (j = 0; src[j] != '\0'; j++)
+    dest[i + j] = src[j];
+  dest[i + j] = '\0';
+  return dest;
+}
 
 int RainSensorReading()
 {
@@ -84,28 +96,28 @@ boolean mqttConnect()
 }
 
 // not used as we are not subsribing to any topic
-void mqttCallback(char *topic, byte *payload, unsigned int len)
-{
-  Serial.print("Message receive: ");
-  Serial.write(payload, len);
-  Serial.println();
-}
+// void mqttCallback(char *topic, byte *payload, unsigned int len)
+// {
+//   Serial.print("Message receive: ");
+//   Serial.write(payload, len);
+//   Serial.println();
+// }
 
-void sendSMS()
-{
-  Serial.println("Sending SMS..."); // Show this message on serial monitor
-  SIM800A.print("AT+CMGF=1\r");     // Set the module to SMS mode
-  delay(100);
-  SIM800A.print("AT+CMGS=\"+94775610102\"\r"); // Your phone number don't forget to include your country code, example +212123456789"
-  delay(500);
-  SIM800A.print("SIM800A is working"); // This is the text to send to the phone number, don't make it too long or you have to modify the SoftwareSerial buffer
-  delay(500);
-  SIM800A.print((char)26); // (required according to the datasheet)
-  delay(500);
-  SIM800A.println();
-  Serial.println("Text Sent.");
-  delay(500);
-}
+// void sendSMS()
+// {
+//   Serial.println("Sending SMS..."); // Show this message on serial monitor
+//   SIM800A.print("AT+CMGF=1\r");     // Set the module to SMS mode
+//   delay(100);
+//   SIM800A.print("AT+CMGS=\"+94775610102\"\r"); // Your phone number don't forget to include your country code, example +212123456789"
+//   delay(500);
+//   SIM800A.print("SIM800A is working"); // This is the text to send to the phone number, don't make it too long or you have to modify the SoftwareSerial buffer
+//   delay(500);
+//   SIM800A.print((char)26); // (required according to the datasheet)
+//   delay(500);
+//   SIM800A.println();
+//   Serial.println("Text Sent.");
+//   delay(500);
+// }
 
 void setup()
 {
@@ -127,25 +139,25 @@ void setup()
   pinMode(AirQualitySensorPIN, INPUT);
 
   Serial.println("System start.");
+RestartModem:
   modem.restart();
   Serial.println("Modem: " + modem.getModemInfo());
   Serial.println("Searching for Mobitel provider.");
-waitForNetwork:
   if (!modem.waitForNetwork())
   {
     Serial.println("Failed. Retrying...");
-    goto waitForNetwork;
+    modem.restart();
+    goto RestartModem;
   }
   Serial.println("Connected to Mobitel.");
   Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
 
   Serial.println("Connecting to GPRS network.");
 
-ConnectToGPRS:
   if (!modem.gprsConnect(apn, user, pass))
   {
     Serial.println("Failed. Retrying...");
-    goto ConnectToGPRS;
+    goto RestartModem;
   }
 
   Serial.println("Connected to GPRS: " + String(apn));
@@ -155,7 +167,7 @@ ConnectToGPRS:
   Serial.println("Connecting to MQTT Broker: " + String(broker));
   while (mqttConnect() == false)
     continue;
-  Serial.println("Connected");
+  Serial.println();
 }
 
 void loop()
@@ -167,16 +179,37 @@ void loop()
   // Serial.print("AirQualitySensorPin: ");
   // Serial.println(analogRead(AirQualitySensorPIN));
 
-  delay(2000);
-  String msg = "{\"location\" : \"Ridmas Macbook\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : 30, \"humidity\" : 80, \"isRaining\" : 1, \"lightIntensity\" : 125, \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}";
-  mqtt.publish(topicOut, msg.c_str());
+  String tempReading = String(TemperatureReading());
+  String humidityReading = String(HumidityReading());
+  String rainSensorReading = String(RainSensorReading());
+  String lightSensorReading = String(LightSensorReading());
+  String airQualitySensorReading = String(AirQualitySensorReading());
+
+  char msg[300] = "{\"location\" : \"FirstDevice\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : ";
+  strcat_CUSTOM(msg, tempReading.c_str());
+  strcat_CUSTOM(msg, ", \"humidity\" : ");
+  strcat_CUSTOM(msg, humidityReading.c_str());
+  strcat_CUSTOM(msg, ", \"isRaining\" : ");
+  strcat_CUSTOM(msg, rainSensorReading.c_str());
+  strcat_CUSTOM(msg, ", \"lightIntensity\" : ");
+  strcat_CUSTOM(msg, lightSensorReading.c_str());
+  strcat_CUSTOM(msg, ", \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}");
+
+  // mqtt.publish(topicOut, msg);
   Serial.println("sent");
 
   if (mqtt.connected())
   {
     mqtt.loop();
   }
+  else
+  {
+    Serial.println("MQTT Connection Dropped");
+    Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+  }
+  delay(5000);
 
   // // Delay between measurements.
   // delay(delayMS);
+
 }
