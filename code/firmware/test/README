@@ -1,18 +1,12 @@
-#Instructions for connecting sensors to Arduino UNO to "PASS" tests 
+#Instructions for connecting sensors to Arduino UNO to "PASS" tests
 
-Pin 2 - DHT11
- 
- 
- 
+Pin A3 - DHT11
+
 #Instructions for adding tests :
 
 1. Create separate test files for each item with functions
 2. Include above function declarations in Header.hpp
 3. Call the fuctions in test_main.cpp
-
-
-
-
 
 This directory is intended for PlatformIO Test Runner and project tests.
 
@@ -23,4 +17,5 @@ determine whether they are fit for use. Unit testing finds problems early
 in the development cycle.
 
 More information about PlatformIO Unit Testing:
+
 - https://docs.platformio.org/en/latest/advanced/unit-testing/index.html

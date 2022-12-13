@@ -41,5 +41,17 @@ void loop()
   RUN_TEST(test_temperature);
   RUN_TEST(test_humidity);
 
+  // AirQualitySensor
+  RUN_TEST(test_air_quality_sensor_is_connected);
+
+  // LightSensor
+  RUN_TEST(test_light_sensor_is_connected);
+
+  // RainSensor
+  RUN_TEST(test_rain_sensor_is_connected);
+
+  // SIM800A
+  RUN_TEST(test_if_modem_is_connected);
+
   UNITY_END(); // stop unit testing
 }

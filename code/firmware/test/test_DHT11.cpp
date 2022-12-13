@@ -12,7 +12,7 @@
 #include <DHT_U.h>
 #include <unity.h>
 
-#define DHTPIN 2 // Digital pin connected to the DHT sensor
+#define DHTPIN A3 // Digital pin connected to the DHT sensor
 // Feather HUZZAH ESP8266 note: use pins 3, 4, 5, 12, 13 or 14 --
 // Pin 15 can work but DHT must be disconnected during program upload.
 
@@ -40,6 +40,7 @@ void test_temperature(void)
   dht.temperature().getEvent(&event);
   TEST_ASSERT_EQUAL(false, isnan(event.temperature));
 }
+
 
 void test_humidity(void)
 {
