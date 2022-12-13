@@ -1,75 +1,109 @@
 #include <Arduino.h>
-
-// DHT Temperature & Humidity Sensor
-// Unified Sensor Library Example
-// Written by Tony DiCola for Adafruit Industries
-// Released under an MIT license.
-
-// REQUIRES the following Arduino libraries:
-// - DHT Sensor Library: https://github.com/adafruit/DHT-sensor-library
-// - Adafruit Unified Sensor Lib: https://github.com/adafruit/Adafruit_Sensor
-
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
+#include <SoftwareSerial.h>
 
-#define DHTPIN 2 // Digital pin connected to the DHT sensor
-// Feather HUZZAH ESP8266 note: use pins 3, 4, 5, 12, 13 or 14 --
-// Pin 15 can work but DHT must be disconnected during program upload.
-
-// Uncomment the type of sensor in use:
+// DHT11
+#define DHTPIN A3
 #define DHTTYPE DHT11 // DHT 11
-// #define DHTTYPE    DHT22     // DHT 22 (AM2302)
-// #define DHTTYPE    DHT21     // DHT 21 (AM2301)
-
-// See guide for details on sensor wiring and usage:
-//   https://learn.adafruit.com/dht/overview
-
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
-uint32_t delayMS;
+#define RainSensorPIN A0
+#define LightSensorPIN A1
+#define AirQualitySensorPIN A2
+
+// SIM800A
+SoftwareSerial SIM800A(9, 10);
+
+int RainSensorReading()
+{
+  Serial.print("RainSensorReading: ");
+  int value = analogRead(RainSensorPIN);
+  Serial.println(value);
+  return value;
+}
+
+int LightSensorReading()
+{
+  Serial.print("LightSensorReading: ");
+  int value = analogRead(LightSensorPIN);
+  Serial.println(value);
+  return value;
+}
+
+int AirQualitySensorReading()
+{
+  Serial.print("AirQualitySensorReading: ");
+  int value = analogRead(AirQualitySensorPIN);
+  Serial.println(value);
+  return value;
+}
+
+int TemperatureReading()
+{
+  sensors_event_t event;
+  dht.temperature().getEvent(&event);
+  return event.temperature;
+}
+
+int HumidityReading()
+{
+  sensors_event_t event;
+  dht.humidity().getEvent(&event);
+  return event.relative_humidity;
+}
+
+void sendSMS()
+{
+  Serial.println("Sending SMS..."); // Show this message on serial monitor
+  SIM800A.print("AT+CMGF=1\r");     // Set the module to SMS mode
+  delay(100);
+  SIM800A.print("AT+CMGS=\"+94775610102\"\r"); // Your phone number don't forget to include your country code, example +212123456789"
+  delay(500);
+  SIM800A.print("SIM800A is working"); // This is the text to send to the phone number, don't make it too long or you have to modify the SoftwareSerial buffer
+  delay(500);
+  SIM800A.print((char)26); // (required according to the datasheet)
+  delay(500);
+  SIM800A.println();
+  Serial.println("Text Sent.");
+  delay(500);
+}
 
 void setup()
 {
   Serial.begin(9600);
-  // Initialize device.
+  SIM800A.begin(9600); // Module baude rate, this is on max, it depends on the version
+
+  // DHT11
   dht.begin();
-  Serial.println(F("DHTxx Unified Sensor Example"));
-  // Print temperature sensor details.
   sensor_t sensor;
   dht.temperature().getSensor(&sensor);
 
-  // Set delay between sensor readings based on sensor details.
-  delayMS = sensor.min_delay / 1000;
+  // Rain Sensor
+  pinMode(RainSensorPIN, INPUT);
+
+  // Light Sensor
+  pinMode(LightSensorPIN, INPUT);
+
+  // Air Quality Sensor
+  pinMode(AirQualitySensorPIN, INPUT);
 }
 
 void loop()
 {
-  // Delay between measurements.
-  delay(delayMS);
-  // Get temperature event and print its value.
-  sensors_event_t event;
-  dht.temperature().getEvent(&event);
-  if (isnan(event.temperature))
-  {
-    Serial.println(F("Error reading temperature!"));
+  // Serial.print("RainSensorPin: ");
+  // Serial.println(analogRead(RainSensorPIN));
+  // Serial.print("LightSensorPin: ");
+  // Serial.println(analogRead(LightSensorPIN));
+  // Serial.print("AirQualitySensorPin: ");
+  // Serial.println(analogRead(AirQualitySensorPIN));
+
+  if (SIM800A.available())
+  { // Displays on the serial monitor if there's a communication from the module
+    Serial.write(SIM800A.read());
   }
-  else
-  {
-    Serial.print(F("Temperature: "));
-    Serial.print(event.temperature);
-    Serial.println(F("C"));
-  }
-  // Get humidity event and print its value.
-  dht.humidity().getEvent(&event);
-  if (isnan(event.relative_humidity))
-  {
-    Serial.println(F("Error reading humidity!"));
-  }
-  else
-  {
-    Serial.print(F("Humidity: "));
-    Serial.print(event.relative_humidity);
-    Serial.println(F("%"));
-  }
+
+  // // Delay between measurements.
+  // delay(delayMS);
 }
