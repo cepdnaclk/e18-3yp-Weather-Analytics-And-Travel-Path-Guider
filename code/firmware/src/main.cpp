@@ -3,6 +3,9 @@
 #include <DHT.h>
 #include <DHT_U.h>
 #include <SoftwareSerial.h>
+#define TINY_GSM_MODEM_SIM800 // Do not remove this line. It is used to select the correct modem by the TinyGSM library.
+#include <TinyGsmClient.h>
+#include <PubSubClient.h>
 
 // DHT11
 #define DHTPIN A3
@@ -14,7 +17,21 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 #define AirQualitySensorPIN A2
 
 // SIM800A
-SoftwareSerial SIM800A(9, 10);
+SoftwareSerial SIM800A(9, 10); // RX, TX
+
+// Network details
+const char apn[] = "mobitel";
+const char user[] = "";
+const char pass[] = "";
+
+// MQTT details
+const char *broker = "weatheranalytics.tk";
+const char *topicOut = "test";
+// const char *topicIn = "test";
+
+TinyGsm modem(SIM800A);
+TinyGsmClient client(modem);
+PubSubClient mqtt(client);
 
 int RainSensorReading()
 {
@@ -54,6 +71,26 @@ int HumidityReading()
   return event.relative_humidity;
 }
 
+boolean mqttConnect()
+{
+  if (!mqtt.connect("GsmClientTest", "weather-data", "nipunonazure@123@"))
+  {
+    Serial.print(".");
+    return false;
+  }
+  Serial.println("Connected to broker.");
+  // mqtt.subscribe(topicIn); // no need to subscribe
+  return mqtt.connected();
+}
+
+// not used as we are not subsribing to any topic
+void mqttCallback(char *topic, byte *payload, unsigned int len)
+{
+  Serial.print("Message receive: ");
+  Serial.write(payload, len);
+  Serial.println();
+}
+
 void sendSMS()
 {
   Serial.println("Sending SMS..."); // Show this message on serial monitor
@@ -88,6 +125,37 @@ void setup()
 
   // Air Quality Sensor
   pinMode(AirQualitySensorPIN, INPUT);
+
+  Serial.println("System start.");
+  modem.restart();
+  Serial.println("Modem: " + modem.getModemInfo());
+  Serial.println("Searching for Mobitel provider.");
+waitForNetwork:
+  if (!modem.waitForNetwork())
+  {
+    Serial.println("Failed. Retrying...");
+    goto waitForNetwork;
+  }
+  Serial.println("Connected to Mobitel.");
+  Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+
+  Serial.println("Connecting to GPRS network.");
+
+ConnectToGPRS:
+  if (!modem.gprsConnect(apn, user, pass))
+  {
+    Serial.println("Failed. Retrying...");
+    goto ConnectToGPRS;
+  }
+
+  Serial.println("Connected to GPRS: " + String(apn));
+
+  mqtt.setServer(broker, 1883);
+  // mqtt.setCallback(mqttCallback);
+  Serial.println("Connecting to MQTT Broker: " + String(broker));
+  while (mqttConnect() == false)
+    continue;
+  Serial.println("Connected");
 }
 
 void loop()
@@ -99,9 +167,14 @@ void loop()
   // Serial.print("AirQualitySensorPin: ");
   // Serial.println(analogRead(AirQualitySensorPIN));
 
-  if (SIM800A.available())
-  { // Displays on the serial monitor if there's a communication from the module
-    Serial.write(SIM800A.read());
+  delay(2000);
+  String msg = "{\"location\" : \"Ridmas Macbook\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : 30, \"humidity\" : 80, \"isRaining\" : 1, \"lightIntensity\" : 125, \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}";
+  mqtt.publish(topicOut, msg.c_str());
+  Serial.println("sent");
+
+  if (mqtt.connected())
+  {
+    mqtt.loop();
   }
 
   // // Delay between measurements.

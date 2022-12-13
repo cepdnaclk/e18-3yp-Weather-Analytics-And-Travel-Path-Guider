@@ -1,0 +1,88 @@
+#define TINY_GSM_MODEM_SIM800
+
+#include <SoftwareSerial.h>
+#include <TinyGsmClient.h>
+#include <PubSubClient.h>
+
+SoftwareSerial SerialAT(9, 10); // RX, TX
+
+// Network details
+const char apn[] = "mobitel";
+const char user[] = "";
+const char pass[] = "";
+
+// MQTT details
+const char *broker = "weatheranalytics.tk";
+const char *topicOut = "test";
+const char *topicIn = "test";
+
+TinyGsm modem(SerialAT);
+TinyGsmClient client(modem);
+PubSubClient mqtt(client);
+
+boolean mqttConnect()
+{
+  if (!mqtt.connect("GsmClientTest", "weather-data", "nipunonazure@123@"))
+  {
+    Serial.print(".");
+    return false;
+  }
+  Serial.println("Connected to broker.");
+  mqtt.subscribe(topicIn);
+  return mqtt.connected();
+}
+
+void mqttCallback(char *topic, byte *payload, unsigned int len)
+{
+  Serial.print("Message receive: ");
+  Serial.write(payload, len);
+  Serial.println();
+}
+
+void setup()
+{
+  Serial.begin(9600);
+  SerialAT.begin(9600);
+
+  Serial.println("System start.");
+  modem.restart();
+  Serial.println("Modem: " + modem.getModemInfo());
+  Serial.println("Searching for Mobitel provider.");
+  if (!modem.waitForNetwork())
+  {
+    Serial.println("fail");
+    while (true)
+      ;
+  }
+  Serial.println("Connected to Mobitel.");
+  Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+
+  Serial.println("Connecting to GPRS network.");
+  if (!modem.gprsConnect(apn, user, pass))
+  {
+    Serial.println("fail");
+    while (true)
+      ;
+  }
+  Serial.println("Connected to GPRS: " + String(apn));
+
+  mqtt.setServer(broker, 1883);
+  mqtt.setCallback(mqttCallback);
+  Serial.println("Connecting to MQTT Broker: " + String(broker));
+  while (mqttConnect() == false)
+    continue;
+  Serial.println();
+}
+
+void loop()
+{
+  delay(1000);
+  String msg = "{\"location\" : \"Ridmas Macbook\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : 30, \"humidity\" : 80, \"isRaining\" : 1, \"lightIntensity\" : 125, \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}";
+  mqtt.publish(topicOut, msg.c_str());
+  Serial.println("sent");
+
+  if (mqtt.connected())
+  {
+    mqtt.loop();
+  }
+}
