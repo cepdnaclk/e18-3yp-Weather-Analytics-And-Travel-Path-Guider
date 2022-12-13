@@ -35,12 +35,17 @@ function run() {
         // lightIntensity: String,
         // windSpeed: String,
         // const msg = message.toString()
-        const data = JSON.parse(message.toString())
+        try {
+            const data = JSON.parse(message.toString());
+            new SensorData({
+                'dateTime': helper.getDateTime(),
+                ...data
+            }).save();
+        } catch (error) {
+            console.log("Error parsing JSON: " + error);
+        }
         // console.log(data);
-        new SensorData({
-            'dateTime': helper.getDateTime(),
-            ...data
-        }).save();
+
     })
 }
 
