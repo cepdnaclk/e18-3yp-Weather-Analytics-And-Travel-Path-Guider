@@ -5,9 +5,10 @@ import 'package:best_flutter_ui_templates/utility/color_utility.dart';
 class ForwardButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String label;
+  final ImageIcon icon;
 
   ForwardButton(
-      {this.onPressed, this.label});
+      {this.onPressed, this.label, this.icon});
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,8 @@ import 'package:best_flutter_ui_templates/components/trapozoid_cut_colored_image
 import 'package:best_flutter_ui_templates/welcome/welcome_animation.dart';
 import 'package:best_flutter_ui_templates/utility/app_constant.dart';
 import 'package:best_flutter_ui_templates/utility/color_utility.dart';
+import 'package:best_flutter_ui_templates/api/google_signin_api.dart';
+
 
 abstract class GoToLoginListener {
   void onGoAheadTap();
@@ -75,12 +77,26 @@ class WelcomePage extends StatelessWidget {
               transform: Matrix4.translationValues(
                   welcomeEnterAnimation.translation.value * 200, 0.0, 0.0),
               child: ForwardButton(
-                onPressed: () {
-                  goTOLoginListener.onGoAheadTap();
-                },
+                onPressed: signIn,
+                //     () {
+                //   goTOLoginListener.onGoAheadTap();
+                // },
                 label: BUTTON_GOAHEAD,
               ),
             ),
+            // SignInButton(
+            //   Buttons.Google,
+            //   text: "Sign up with Google",
+            //   onPressed: () {},
+            // ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red, // background
+                onPrimary: Colors.white, // foreground
+              ),
+              onPressed: signIn,
+              child: Text('SIGN IN WITH GOOOOGLE'),
+            )
           ],
         ),
       ),
@@ -117,4 +133,8 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future signIn() async {
+  await GoogleSignInApi.login();
 }
