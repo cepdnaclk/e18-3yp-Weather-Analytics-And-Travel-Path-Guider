@@ -152,7 +152,7 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _buildSocialMediaAppButton(COLOR_GOOGLE, IMAGE_PATH_GOOGLE,
+            _buildSocialMediaAppButton(COLOR_GOOGLE, "assets/images/googleLogo.png",
                 40, enterAnimation.googleScaleTranslation.value),
             SizedBox(
               width: 8,
