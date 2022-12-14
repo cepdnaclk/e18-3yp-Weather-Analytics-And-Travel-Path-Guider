@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/components/forward_button.dart';
 import 'package:best_flutter_ui_templates/components/header_text.dart';
@@ -12,8 +13,8 @@ abstract class GoToWelcomeListener {
 
 class LoginPage extends StatelessWidget {
   LoginPage(
-      {required AnimationController controller,
-      required this.goToWelcomeListener})
+      {@required AnimationController controller,
+      @required this.goToWelcomeListener})
       : enterAnimation = new LoginEnterAnimation(controller);
 
   final GoToWelcomeListener goToWelcomeListener;
@@ -112,7 +113,7 @@ class LoginPage extends StatelessWidget {
         controller: userNameController,
         validator: (val) => val?.length == 0
             ? PHONE_AUTH_VALIDATION_EMPTY
-            : val?.length! < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
+            : val.length < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
       ),
     );
   }
@@ -137,7 +138,7 @@ class LoginPage extends StatelessWidget {
         obscureText: true,
         validator: (val) => val?.length == 0
             ? PHONE_AUTH_VALIDATION_EMPTY
-            : val?.length! < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
+            : val?.length < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
       ),
     );
   }

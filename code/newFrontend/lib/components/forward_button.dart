@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/utility/color_utility.dart';
 

@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 const PHONE_AUTH_HINT = "My mobile is ...";
