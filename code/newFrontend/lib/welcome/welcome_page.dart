@@ -6,6 +6,9 @@ import 'package:best_flutter_ui_templates/welcome/welcome_animation.dart';
 import 'package:best_flutter_ui_templates/utility/app_constant.dart';
 import 'package:best_flutter_ui_templates/utility/color_utility.dart';
 import 'package:best_flutter_ui_templates/api/google_signin_api.dart';
+import 'package:best_flutter_ui_templates/login/google_signin.dart';
+
+
 
 
 abstract class GoToLoginListener {
@@ -77,7 +80,7 @@ class WelcomePage extends StatelessWidget {
               transform: Matrix4.translationValues(
                   welcomeEnterAnimation.translation.value * 200, 0.0, 0.0),
               child: ForwardButton(
-                onPressed: signIn,
+                onPressed: signG,
                 //     () {
                 //   goTOLoginListener.onGoAheadTap();
                 // },
