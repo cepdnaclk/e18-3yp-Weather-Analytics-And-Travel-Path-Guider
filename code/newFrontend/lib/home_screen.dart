@@ -1,6 +1,7 @@
 import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/navigation_home_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -11,9 +12,11 @@ class MyHomePage extends StatefulWidget {
 
 void homeScreen() {
   runApp(
-    const MaterialApp(
+     MaterialApp(
       title: 'Home',
-      home: MyHomePage(),
+      //home: MyHomePage(),
+      home : NavigationHomeScreen(),
+
       debugShowCheckedModeBanner: false,
     ),
   );
