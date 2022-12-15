@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:best_flutter_ui_templates/delayed_animation.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:best_flutter_ui_templates/googleLogin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -162,12 +163,37 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   height: 100.0,
                 ),
                 DelayedAnimation(
+                  
                   child: GestureDetector(
                     onTapDown: _onTapDown,
                     onTapUp: _onTapUp,
+                    
                     child: Transform.scale(
                       scale: _scale,
                       child: _animatedButtonUI,
+                      
+                      // child: TextButton(
+                      //                     style: ButtonStyle(
+                      //                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      //                         (Set<MaterialState> states) {
+                      //                           if (states.contains(MaterialState.focused))
+                      //                             return Colors.red;
+                      //                           return null; // Defer to the widget's default.
+                      //                         }
+                      //                       ),
+                      //                     ),
+                      //                     onPressed: () { },
+                      //                     child: Text(
+                      //                               'LOGIN WITH GOOGLE',
+                      //                               style: TextStyle(
+                      //                                 fontSize: 20.0,
+                      //                                 fontWeight: FontWeight.bold,
+                      //                                 color: Color.fromARGB(255, 255, 255, 255),
+                                                      
+                      //                               ),
+                      //                             ),
+                      //                   )
+
                     ),
                   ),
                   delay: delayedAmount + 4000,
@@ -214,7 +240,18 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         ),
         
         child: Center(
-          child: Text(
+          child: TextButton(
+  style: ButtonStyle(
+    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.focused))
+          return Colors.red;
+        return null; // Defer to the widget's default.
+      }
+    ),
+  ),
+  onPressed: googleLogin,
+  child:  Text(
             'LOGIN WITH GOOGLE',
             style: TextStyle(
               fontSize: 20.0,
@@ -223,6 +260,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               
             ),
           ),
+        )
         ),
       );
 

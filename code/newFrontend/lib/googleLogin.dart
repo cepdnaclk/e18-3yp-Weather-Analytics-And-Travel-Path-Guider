@@ -10,6 +10,8 @@ import 'dart:convert' show json;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:best_flutter_ui_templates/hotel_booking/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/home_screen.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
@@ -20,11 +22,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-void main() {
+void googleLogin() {
   runApp(
     const MaterialApp(
       title: 'Google Sign In',
       home: SignInDemo(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
@@ -131,8 +134,10 @@ class SignInDemoState extends State<SignInDemo> {
             child: const Text('SIGN OUT'),
           ),
           ElevatedButton(
-            child: const Text('REFRESH'),
-            onPressed: () => _handleGetContact(user),
+            // child: const Text('REFRESH'),
+            // onPressed: () => _handleGetContact(user),
+            child: const Text('CONTINUE'),
+            onPressed: homeScreen,
           ),
         ],
       );

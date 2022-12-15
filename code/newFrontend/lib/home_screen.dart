@@ -9,6 +9,16 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+void homeScreen() {
+  runApp(
+    const MaterialApp(
+      title: 'Home',
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
+}
+
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   //List<HomeList> homeList = HomeList.homeList;
   AnimationController? animationController;
