@@ -1,6 +1,6 @@
 function getDateTime() {
-    var datetime = new Date();
-    return datetime.toISOString();
+    let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" });
+    return nz_date_string;
 }
 
 module.exports = {
