@@ -36,10 +36,8 @@ dependencies:
     intl: ^0.17.0
     animations: ^2.0.3
     google_sign_in : ^5.0.3
-    url_launcher: ^6.0.0-nullsafety
-    flutter_appauth: ^4.2.1
+    avatar_glow: ^2.0.2
     http: ^0.13.5
-    flutter_secure_storage: ^7.0.1
 
 dev_dependencies:
     flutter_test:

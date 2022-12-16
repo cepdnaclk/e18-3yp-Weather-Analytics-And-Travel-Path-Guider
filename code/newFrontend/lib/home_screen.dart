@@ -1,12 +1,25 @@
 import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hotel_home_screen.dart';
+import 'package:best_flutter_ui_templates/navigation_home_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+}
+
+void homeScreen() {
+  runApp(
+     MaterialApp(
+      title: 'Home',
+      //home: MyHomePage(),
+      home : NavigationHomeScreen(),
+
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {

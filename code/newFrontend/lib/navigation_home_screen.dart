@@ -12,6 +12,16 @@ class NavigationHomeScreen extends StatefulWidget {
   _NavigationHomeScreenState createState() => _NavigationHomeScreenState();
 }
 
+void navigationHomeScreen() {
+  runApp(
+     MaterialApp(
+      title: 'Google Sign In',
+      home: NavigationHomeScreen(),
+      debugShowCheckedModeBanner: false,
+    ),
+  );
+}
+
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   Widget? screenView;
   DrawerIndex? drawerIndex;
