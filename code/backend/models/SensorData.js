@@ -11,7 +11,7 @@ const SensorDataSchema = new Schema({
     humidity: String,
     isRaining: String,
     lightIntensity: String,
-    windSpeed: String,
+    airQuality: String,
 });
 
 const SensorData = mongoose.model("SensorData", SensorDataSchema);

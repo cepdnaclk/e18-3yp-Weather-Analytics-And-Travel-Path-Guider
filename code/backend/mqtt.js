@@ -24,13 +24,30 @@ function run() {
     mqttClient.on('message', function (topic, message) {
         // message is Buffer
         console.log(helper.getDateTime() + ": MQTT msg received: Topic: " + topic + ", message: " + message.toString())
-        mqttClient.publish("confirm", "got the msg");
 
         try {
-            const data = JSON.parse(message.toString());
+
+            // MQTT msg  format
+            // id,temp,humidity,rainSensor,lightSensor,airQualitySensor
+            const splitted = message.toString().split(",");
+            const id = splitted[0];
+            const temp = splitted[1];
+            const humidity = splitted[2];
+            const rain = splitted[3];
+            const light = splitted[4];
+            const air = splitted[5];
+
+            // console.log(splitted)
             new SensorData({
                 'dateTime': helper.getDateTime(),
-                ...data
+                'location': "hanthana",
+                'device_id': id,
+                'topic': "test",
+                'temperature': temp,
+                'humidity': humidity,
+                'isRaining': rain,
+                "lightIntensity": light,
+                "airQuality": air
             }).save();
         } catch (error) {
             console.log("Error parsing JSON: " + error);
