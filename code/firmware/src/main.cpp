@@ -189,7 +189,8 @@ void loop()
   strcat(msg, ",");
   strcat(msg, airQualitySensorReading);
   mqtt.publish(topicOut, msg);
-  Serial.println("sent");
+  Serial.print("Sent msg to MQTT broker - ");
+  Serial.println(msg);
 
   if (mqtt.connected())
   {
