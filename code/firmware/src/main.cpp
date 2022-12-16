@@ -34,17 +34,6 @@ TinyGsm modem(SIM800A);
 TinyGsmClient client(modem);
 PubSubClient mqtt(client);
 
-char *strcat_CUSTOM(char *dest, const char *src)
-{
-  size_t i, j;
-  for (i = 0; dest[i] != '\0'; i++)
-    ;
-  for (j = 0; src[j] != '\0'; j++)
-    dest[i + j] = src[j];
-  dest[i + j] = '\0';
-  return dest;
-}
-
 int RainSensorReading()
 {
   Serial.print("RainSensorReading: ");
@@ -139,6 +128,7 @@ void setup()
   pinMode(AirQualitySensorPIN, INPUT);
 
   Serial.println("System start.");
+  Serial.println("Modem: " + modem.getModemInfo());
   modem.restart();
   Serial.println("Modem: " + modem.getModemInfo());
   Serial.println("Searching for Dialog provider.");
@@ -170,32 +160,34 @@ void setup()
   Serial.println();
 }
 
+char msg[200];
+
 void loop()
 {
-  // Serial.print("RainSensorPin: ");
-  // Serial.println(analogRead(RainSensorPIN));
-  // Serial.print("LightSensorPin: ");
-  // Serial.println(analogRead(LightSensorPIN));
-  // Serial.print("AirQualitySensorPin: ");
-  // Serial.println(analogRead(AirQualitySensorPIN));
 
-  String tempReading = String(TemperatureReading());
-  String humidityReading = String(HumidityReading());
-  String rainSensorReading = String(RainSensorReading());
-  String lightSensorReading = String(LightSensorReading());
-  String airQualitySensorReading = String(AirQualitySensorReading());
+  char tempReading[5] = {};
+  itoa(TemperatureReading(), tempReading, 10);
+  char humidityReading[5] = {};
+  itoa(HumidityReading(), humidityReading, 10);
+  char rainSensorReading[5] = {};
+  itoa(RainSensorReading(), rainSensorReading, 10);
+  char lightSensorReading[5] = {};
+  itoa(LightSensorReading(), lightSensorReading, 10);
+  char airQualitySensorReading[5] = {};
+  itoa(AirQualitySensorReading(), airQualitySensorReading, 10);
 
-  char msg[200] = "{\"location\" : \"FirstDevice\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : ";
-  strcat_CUSTOM(msg, tempReading.c_str());
-  // strcat_CUSTOM(msg, ", \"humidity\" : ");
-  // strcat_CUSTOM(msg, humidityReading.c_str());
-  // strcat_CUSTOM(msg, ", \"isRaining\" : ");
-  // strcat_CUSTOM(msg, rainSensorReading.c_str());
-  // strcat_CUSTOM(msg, ", \"lightIntensity\" : ");
-  // strcat_CUSTOM(msg, lightSensorReading.c_str());
-  // strcat_CUSTOM(msg, ", \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}");
-
-  // Serial.println(msg);
+  // MQTT msg  format
+  // id,temp,humidity,rainSensor,lightSensor,airQualitySensor
+  strcpy(msg, "1,");
+  strcat(msg, tempReading);
+  strcat(msg, ",");
+  strcat(msg, humidityReading);
+  strcat(msg, ",");
+  strcat(msg, rainSensorReading);
+  strcat(msg, ",");
+  strcat(msg, lightSensorReading);
+  strcat(msg, ",");
+  strcat(msg, airQualitySensorReading);
   mqtt.publish(topicOut, msg);
   Serial.println("sent");
 
