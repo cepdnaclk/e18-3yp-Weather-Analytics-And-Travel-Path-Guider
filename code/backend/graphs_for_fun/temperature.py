@@ -7,11 +7,18 @@ x = []
 temp = []
 humid = []
 
+i = 0
 for each in data:
-    x.append(each["dateTime"])
-    temp.append(each["temperature"])
-    humid.append(each["humidity"])
+    x.append(i)
+    i += 1
+    temp.append(int(each["temperature"]))
+    humid.append(int(each["humidity"]))
 
-plt.plot(x, temp, x, humid)
-plt.legend(["Temperature", "Humidity %"])
+fig, axs = plt.subplots(2)
+axs[0].plot(x, temp)
+axs[0].legend("Temperature")
+
+axs[1].plot(x, humid)
+axs[1].legend("Humidity %")
+
 plt.show()
