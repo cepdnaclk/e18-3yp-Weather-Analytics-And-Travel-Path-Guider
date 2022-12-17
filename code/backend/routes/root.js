@@ -21,7 +21,6 @@ router.get('/clear1', async (req, res) => {
     console.log('Page requested ' + req.url);
     await SensorData.deleteMany({})
     await Users.deleteMany({})
-
     res.send("Cleared");
 })
 
