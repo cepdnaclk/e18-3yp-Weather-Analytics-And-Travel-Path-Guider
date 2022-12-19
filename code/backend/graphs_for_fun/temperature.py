@@ -3,7 +3,7 @@ import datetime
 import matplotlib.pyplot as plt
 import pytz
 
-data = requests.get("http://weatheranalytics.tk:8080").json()
+data = requests.get("http://localhost:8080").json()
 
 x = []
 temp = []
