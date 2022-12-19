@@ -8,6 +8,7 @@ import 'package:best_flutter_ui_templates/delayed_animation.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:best_flutter_ui_templates/googleLogin.dart';
+import 'package:best_flutter_ui_templates/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -205,14 +206,48 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 ),
                 DelayedAnimation(
                   child: Text(
-                    "Visit Website".toUpperCase(),
+                    "For TEsting".toUpperCase(),
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         color: color),
                   ),
                   delay: delayedAmount + 5000,
+                  
                 ),
+                
+   Container(
+        height: 60,
+        width: 270,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100.0),
+          color: Colors.white,
+        ),
+        
+        child: Center(
+          child: TextButton(
+  style: ButtonStyle(
+    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.focused))
+          return Colors.red;
+        return null; // Defer to the widget's default.
+      }
+    ),
+  ),
+  onPressed: homeScreen,
+  child:  Text(
+            'GO TO APP',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF8185E2),
+              
+            ),
+          ),
+        )
+        ),
+      )
               ],
             ),
           )
@@ -265,6 +300,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         )
         ),
       );
+
+      
 
   void _onTapDown(TapDownDetails details) {
     _controller.forward();
