@@ -11,11 +11,16 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/clear', async (req, res) => {
+router.get('/count', async (req, res) => {
+    console.log('Page requested ' + req.url);
+    const count = await SensorData.countDocuments();
+    res.send({ count: count });
+})
+
+router.get('/clear1', async (req, res) => {
     console.log('Page requested ' + req.url);
     await SensorData.deleteMany({})
     await Users.deleteMany({})
-
     res.send("Cleared");
 })
 

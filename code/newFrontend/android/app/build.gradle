@@ -54,9 +54,9 @@ android {
 
     signingConfigs{
         debug{
-            keyAlias 'NIPUN-upload'
+            keyAlias 'alias_name'
             keyPassword 'android'
-            storeFile file('NIPUN-upload-keystore.jks')
+            storeFile file('my-key.keystore')
             storePassword 'android'
         }
     }
