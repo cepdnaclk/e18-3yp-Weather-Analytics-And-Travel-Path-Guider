@@ -26,15 +26,6 @@ function run() {
         console.log(helper.getDateTime() + ": MQTT msg received: Topic: " + topic + ", message: " + message.toString())
         mqttClient.publish("confirm", "got the msg");
 
-        // location: String,
-        // device_id: String,
-        // topic: String,
-        // temperature: String,
-        // humidity: String,
-        // isRaining: Boolean,
-        // lightIntensity: String,
-        // windSpeed: String,
-        // const msg = message.toString()
         try {
             const data = JSON.parse(message.toString());
             new SensorData({
@@ -44,7 +35,6 @@ function run() {
         } catch (error) {
             console.log("Error parsing JSON: " + error);
         }
-        // console.log(data);
 
     })
 }

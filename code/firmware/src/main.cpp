@@ -21,7 +21,7 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 SoftwareSerial SIM800A(9, 10); // RX, TX
 
 // Network details
-const char apn[] = "mobitel";
+const char apn[] = "dialogbb";
 const char user[] = "";
 const char pass[] = "";
 
@@ -139,17 +139,14 @@ void setup()
   pinMode(AirQualitySensorPIN, INPUT);
 
   Serial.println("System start.");
-RestartModem:
   modem.restart();
   Serial.println("Modem: " + modem.getModemInfo());
-  Serial.println("Searching for Mobitel provider.");
+  Serial.println("Searching for Dialog provider.");
   if (!modem.waitForNetwork())
   {
     Serial.println("Failed. Retrying...");
-    modem.restart();
-    goto RestartModem;
   }
-  Serial.println("Connected to Mobitel.");
+  Serial.println("Connected to Dialog.");
   Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
 
   Serial.println("Connecting to GPRS network.");
@@ -157,7 +154,6 @@ RestartModem:
   if (!modem.gprsConnect(apn, user, pass))
   {
     Serial.println("Failed. Retrying...");
-    goto RestartModem;
   }
 
   Serial.println("Connected to GPRS: " + String(apn));
@@ -166,7 +162,11 @@ RestartModem:
   // mqtt.setCallback(mqttCallback);
   Serial.println("Connecting to MQTT Broker: " + String(broker));
   while (mqttConnect() == false)
+  {
+    Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
     continue;
+  }
+
   Serial.println();
 }
 
@@ -185,17 +185,18 @@ void loop()
   String lightSensorReading = String(LightSensorReading());
   String airQualitySensorReading = String(AirQualitySensorReading());
 
-  char msg[300] = "{\"location\" : \"FirstDevice\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : ";
+  char msg[200] = "{\"location\" : \"FirstDevice\", \"device_id\" : 0, \"topic\" : \"test\", \"temperature\" : ";
   strcat_CUSTOM(msg, tempReading.c_str());
-  strcat_CUSTOM(msg, ", \"humidity\" : ");
-  strcat_CUSTOM(msg, humidityReading.c_str());
-  strcat_CUSTOM(msg, ", \"isRaining\" : ");
-  strcat_CUSTOM(msg, rainSensorReading.c_str());
-  strcat_CUSTOM(msg, ", \"lightIntensity\" : ");
-  strcat_CUSTOM(msg, lightSensorReading.c_str());
-  strcat_CUSTOM(msg, ", \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}");
+  // strcat_CUSTOM(msg, ", \"humidity\" : ");
+  // strcat_CUSTOM(msg, humidityReading.c_str());
+  // strcat_CUSTOM(msg, ", \"isRaining\" : ");
+  // strcat_CUSTOM(msg, rainSensorReading.c_str());
+  // strcat_CUSTOM(msg, ", \"lightIntensity\" : ");
+  // strcat_CUSTOM(msg, lightSensorReading.c_str());
+  // strcat_CUSTOM(msg, ", \"windSpeed\" : 125, \"time\" : \"2022-12-13 11:14:20\"}");
 
-  // mqtt.publish(topicOut, msg);
+  // Serial.println(msg);
+  mqtt.publish(topicOut, msg);
   Serial.println("sent");
 
   if (mqtt.connected())
@@ -206,10 +207,11 @@ void loop()
   {
     Serial.println("MQTT Connection Dropped");
     Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+    Serial.println("Running setup() again");
+    setup();
   }
   delay(5000);
 
   // // Delay between measurements.
   // delay(delayMS);
-
 }

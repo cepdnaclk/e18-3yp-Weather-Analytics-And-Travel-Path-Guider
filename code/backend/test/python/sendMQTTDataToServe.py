@@ -48,6 +48,6 @@ while True:
     data["lightIntensity"] = 125
     data["windSpeed"] = 125
     data["time"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+    print(len(json.dumps(data)))
     client1.publish("test", json.dumps(data))
     time.sleep(5)
