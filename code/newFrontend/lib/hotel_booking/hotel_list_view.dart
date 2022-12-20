@@ -1,7 +1,9 @@
+import 'package:best_flutter_ui_templates/hotel_booking/hanthana.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:best_flutter_ui_templates/hotel_booking/hanthana.dart';
 
 import 'model/hotel_list_data.dart';
 
@@ -207,6 +209,39 @@ class HotelListView extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Container(
+        height: 60,
+        width: 90,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100.0),
+          color: Colors.white,
+        ),
+        
+        child: Center(
+          child: TextButton(
+  style: ButtonStyle(
+    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.focused))
+          return Colors.red;
+        return null; // Defer to the widget's default.
+      }
+    ),
+  ),
+  onPressed: hanthana,
+  child:  Text(
+            'VIEW',
+            style: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 0, 1, 0),
+              
+            ),
+          ),
+        )
+        ),
+      ),
+
                         Positioned(
                           top: 8,
                           right: 8,
