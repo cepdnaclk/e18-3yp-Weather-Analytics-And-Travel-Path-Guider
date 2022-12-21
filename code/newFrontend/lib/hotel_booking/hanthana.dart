@@ -130,7 +130,7 @@ class CustomListItemTwo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: SizedBox(
-        height: 100,
+        height: 80,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -168,7 +168,7 @@ class MyStatelessWidget extends StatelessWidget {
         // Row
               Row(
         children:  <Widget>[
-          Image.asset('assets/images/night_cloudy.png'),
+          Image.asset('assets/images/weather3.gif',height: 250.0,width: 250.0,),
         
           Expanded(
             child: Text('Deliver features faster', textAlign: TextAlign.center),
@@ -183,8 +183,7 @@ class MyStatelessWidget extends StatelessWidget {
         CustomListItemTwo(
           thumbnail:Image.asset('assets/images/temperature.png'),
           title: 'TEMPERATURE',
-          subtitle: 'Flutter continues to improve and expand its horizons. '
-              'This text should max out at two lines and clip',
+          subtitle: 'Flutter continues to i.......... ',
           author: 'Dash',
           publishDate: 'Dec 28',
           readDuration: '5 mins',
@@ -192,8 +191,7 @@ class MyStatelessWidget extends StatelessWidget {
         CustomListItemTwo(
           thumbnail:Image.asset('assets/images/humidity.png'),
           title: 'HUMIDITY',
-          subtitle: 'Flutter continues to improve and expand its horizons. '
-              'This text should max out at two lines and clip',
+          subtitle: 'Flutter continues to improve an',
           author: 'Dash',
           publishDate: 'Dec 28',
           readDuration: '5 mins',
@@ -201,8 +199,7 @@ class MyStatelessWidget extends StatelessWidget {
         CustomListItemTwo(
           thumbnail: Image.asset('assets/images/rain.png'),
           title: 'RAIN',
-          subtitle: 'Flutter continues to improve and expand its horizons. '
-              'This text should max out at two lines and clip',
+          subtitle: 'Flutter continues ',
           author: 'Dash',
           publishDate: 'Dec 28',
           readDuration: '5 mins',
@@ -210,8 +207,7 @@ class MyStatelessWidget extends StatelessWidget {
         CustomListItemTwo(
           thumbnail:Image.asset('assets/images/air.png'),
           title: 'AIR QUALITY',
-          subtitle: 'Flutter continues to improve and expand its horizons. '
-              'This text should max out at two lines and clip',
+          subtitle: 'Flutter continues to improve a',
           author: 'Dash',
           publishDate: 'Dec 28',
           readDuration: '5 mins',
