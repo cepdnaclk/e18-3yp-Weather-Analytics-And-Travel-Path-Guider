@@ -85,6 +85,16 @@ Future<SignUpResponse> signUp(
 
 Future<LatestUpdateResponse> getLatestUpdateOfLocation(String location) async {
   final http.Response response;
+  LatestUpdateResponse failed = const LatestUpdateResponse(
+      dateTime: "",
+      location: "",
+      device_id: "",
+      topic: "",
+      temperature: "",
+      humidity: "",
+      isRaining: "",
+      lightIntensity: "",
+      status: "failed");
   try {
     print("$baseURL/v1/latestReading/$location");
     response = await http.get(Uri.parse("$baseURL/v1/latestReading/$location"));
@@ -97,21 +107,13 @@ Future<LatestUpdateResponse> getLatestUpdateOfLocation(String location) async {
           .toString()
           .substring(1, response.body.toString().length - 1)));
     } else if (response.statusCode == 409) {
-      return const LatestUpdateResponse(
-          dateTime: "",
-          location: "",
-          device_id: "",
-          topic: "",
-          temperature: "",
-          humidity: "",
-          isRaining: "",
-          lightIntensity: "",
-          status: "failed");
+      return failed;
     } else {
       throw Exception("Something went wrong.");
     }
   } catch (e) {
     print(e);
-    print("Seems like no network or something")
+    print("Seems like no network or something");
+    return failed;
   }
 }

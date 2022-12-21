@@ -117,7 +117,7 @@ class CustomListItemTwo extends StatelessWidget {
     required this.thumbnail,
     required this.title,
     required this.subtitle,
-    //required this.author,
+    required this.author,
     required this.publishDate,
     required this.readDuration,
   });
@@ -125,7 +125,7 @@ class CustomListItemTwo extends StatelessWidget {
   final Widget thumbnail;
   final String title;
   final String subtitle;
-  //final String author;
+  final String author;
   final String publishDate;
   final String readDuration;
 
@@ -173,11 +173,19 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
   String rain = "Loading";
   String airQuality = "Loading";
   String lightIntensity = "Loading";
+  String time = "";
+  String date = "";
 
   void refreshData(String location) async {
     LatestUpdateResponse response = await getLatestUpdateOfLocation(location);
-    print(response.lightIntensity);
+    // print(response.lightIntensity);
+    // "dateTime": "2022-12-21T05:23:43.000Z",
+
     setState(() {
+      // TODO: @NipunFernando convert this +00:00 timezone to +5:30 time
+      time = response.dateTime.split("T")[1];
+
+      date = response.dateTime.split("T")[0];
       temp = response.temperature;
       humidity = response.humidity;
       rain = response.isRaining;
@@ -187,9 +195,11 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     Future.delayed(const Duration(milliseconds: 1000), () {
       refreshData("hanthana");
     });
+    
     return ListView(
       padding: const EdgeInsets.all(10.0),
       children: <Widget>[
@@ -202,8 +212,8 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
               width: 250.0,
             ),
             Expanded(
-              child: Text('DATE :\n 2022-12-21\n\n'+
-              'TIME :\n 07:10:00 - 07:10:05', textAlign: TextAlign.center),
+              child: Text('DATE :\n ' + date + '\n\n' + 'TIME :\n ' + time,
+                  textAlign: TextAlign.center),
             ),
             // Expanded(
             //   child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
