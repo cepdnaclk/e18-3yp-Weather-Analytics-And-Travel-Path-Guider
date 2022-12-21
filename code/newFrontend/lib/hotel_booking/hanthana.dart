@@ -11,7 +11,8 @@
 // import 'package:best_flutter_ui_templates/home_screen.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
-
+//[{"_id":"63a25db3102dfbfb478b7b91","dateTime":"2022-12-21T01:13:23.000Z","location":"hanthana","device_id":"1","topic":"test","temperature":"24",
+//"humidity":"80","isRaining":"1017","lightIntensity":"1001","__v":0}]
 
 import 'package:flutter/material.dart';
 
@@ -39,14 +40,14 @@ class _ArticleDescription extends StatelessWidget {
   const _ArticleDescription({
     required this.title,
     required this.subtitle,
-    required this.author,
+    // required this.author,
     required this.publishDate,
     required this.readDuration,
   });
 
   final String title;
   final String subtitle;
-  final String author;
+  // final String author;
   final String publishDate;
   final String readDuration;
 
@@ -67,14 +68,15 @@ class _ArticleDescription extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 2.0)),
+              const Padding(padding: EdgeInsets.only(bottom: 0.0)),
               Text(
                 subtitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                maxLines: 8,
+                //overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 16.0,
                   color: Colors.black54,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -85,17 +87,17 @@ class _ArticleDescription extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              // Text(
+              //   author,
+              //   style: const TextStyle(
+              //     fontSize: 12.0,
+              //     color: Colors.black87,
+              //   ),
+              // ),
               Text(
-                author,
+                '$publishDate  $readDuration',
                 style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black87,
-                ),
-              ),
-              Text(
-                '$publishDate - $readDuration',
-                style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 10.0,
                   color: Colors.black54,
                 ),
               ),
@@ -113,7 +115,7 @@ class CustomListItemTwo extends StatelessWidget {
     required this.thumbnail,
     required this.title,
     required this.subtitle,
-    required this.author,
+    //required this.author,
     required this.publishDate,
     required this.readDuration,
   });
@@ -121,7 +123,7 @@ class CustomListItemTwo extends StatelessWidget {
   final Widget thumbnail;
   final String title;
   final String subtitle;
-  final String author;
+  //final String author;
   final String publishDate;
   final String readDuration;
 
@@ -144,7 +146,6 @@ class CustomListItemTwo extends StatelessWidget {
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,
-                  author: author,
                   publishDate: publishDate,
                   readDuration: readDuration,
                 ),
@@ -166,59 +167,57 @@ class MyStatelessWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       children: <Widget>[
         // Row
-              Row(
-        children:  <Widget>[
-          Image.asset('assets/images/weather3.gif',height: 250.0,width: 250.0,),
-        
-          Expanded(
-            child: Text('Deliver features faster', textAlign: TextAlign.center),
-          ),
-          Expanded(
-            child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
-          ),
-          
-        ],
-      ),
+        Row(
+          children: <Widget>[
+            Image.asset(
+              'assets/images/weather3.gif',
+              height: 250.0,
+              width: 250.0,
+            ),
+            Expanded(
+              child: Text('DATE :\n 2022-12-21\n\n'+
+              'TIME :\n 07:10:00 - 07:10:05', textAlign: TextAlign.center),
+            ),
+            // Expanded(
+            //   child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
+            // ),
+          ],
+        ),
         //////////
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/temperature.png'),
+          thumbnail: Image.asset('assets/images/temperature.png'),
           title: 'TEMPERATURE',
-          subtitle: 'Flutter continues to i.......... ',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: '24 C',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/humidity.png'),
+          thumbnail: Image.asset('assets/images/humidity.png'),
           title: 'HUMIDITY',
-          subtitle: 'Flutter continues to improve an',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: '80%',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
           thumbnail: Image.asset('assets/images/rain.png'),
           title: 'RAIN',
-          subtitle: 'Flutter continues ',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: '1017',
+          publishDate: 'Sunny',
+          readDuration: '',
         ),
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/air.png'),
+          thumbnail: Image.asset('assets/images/air.png'),
           title: 'AIR QUALITY',
-          subtitle: 'Flutter continues to improve a',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: '987',
+          publishDate: '4.5 STARS',
+          readDuration: '',
         ),
         CustomListItemTwo(
           thumbnail: Image.asset('assets/images/light.png'),
           title: 'LIGHT INTENSITY',
-          subtitle: 'Flutter once again improves and makes updates.',
-          author: 'Flutter',
-          publishDate: 'Feb 26',
-          readDuration: '12 mins',
+          subtitle: '1001',
+          publishDate: 'DARK',
+          readDuration: '',
         ),
       ],
     );
