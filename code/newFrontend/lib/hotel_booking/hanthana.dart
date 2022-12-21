@@ -11,6 +11,9 @@
 // import 'package:best_flutter_ui_templates/home_screen.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
+//[{"_id":"63a25db3102dfbfb478b7b91","dateTime":"2022-12-21T01:13:23.000Z","location":"hanthana","device_id":"1","topic":"test","temperature":"24",
+//"humidity":"80","isRaining":"1017","lightIntensity":"1001","__v":0}]
+
 import 'package:flutter/material.dart';
 import '../api/routes.dart';
 import '../api/responseModels.dart';
@@ -39,14 +42,14 @@ class _ArticleDescription extends StatelessWidget {
   const _ArticleDescription({
     required this.title,
     required this.subtitle,
-    required this.author,
+    // required this.author,
     required this.publishDate,
     required this.readDuration,
   });
 
   final String title;
   final String subtitle;
-  final String author;
+  // final String author;
   final String publishDate;
   final String readDuration;
 
@@ -67,15 +70,15 @@ class _ArticleDescription extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 2.0)),
+              const Padding(padding: EdgeInsets.only(bottom: 0.0)),
               Text(
                 subtitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                maxLines: 8,
+                //overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
                   color: Colors.black54,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -86,17 +89,17 @@ class _ArticleDescription extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              // Text(
+              //   author,
+              //   style: const TextStyle(
+              //     fontSize: 12.0,
+              //     color: Colors.black87,
+              //   ),
+              // ),
               Text(
-                author,
+                '$publishDate  $readDuration',
                 style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black87,
-                ),
-              ),
-              Text(
-                '$publishDate - $readDuration',
-                style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 10.0,
                   color: Colors.black54,
                 ),
               ),
@@ -114,7 +117,7 @@ class CustomListItemTwo extends StatelessWidget {
     required this.thumbnail,
     required this.title,
     required this.subtitle,
-    required this.author,
+    //required this.author,
     required this.publishDate,
     required this.readDuration,
   });
@@ -122,7 +125,7 @@ class CustomListItemTwo extends StatelessWidget {
   final Widget thumbnail;
   final String title;
   final String subtitle;
-  final String author;
+  //final String author;
   final String publishDate;
   final String readDuration;
 
@@ -145,7 +148,6 @@ class CustomListItemTwo extends StatelessWidget {
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,
-                  author: author,
                   publishDate: publishDate,
                   readDuration: readDuration,
                 ),
@@ -200,10 +202,9 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
               width: 250.0,
             ),
             Expanded(
-              child: Text('Date\n2022-12-21\n\nTime\n10.40am',
-                  textAlign: TextAlign.center),
-            )
-            // ),
+              child: Text('DATE :\n 2022-12-21\n\n'+
+              'TIME :\n 07:10:00 - 07:10:05', textAlign: TextAlign.center),
+            ),
             // Expanded(
             //   child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
             // ),
