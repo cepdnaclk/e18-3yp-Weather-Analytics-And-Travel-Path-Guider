@@ -288,7 +288,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-
                       ),
                     ),
                   ),
@@ -521,10 +520,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back),
-                  ),
+                  // child: Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Icon(Icons.arrow_back),
+                  // ),
                 ),
               ),
             ),

@@ -27,6 +27,10 @@ app.use('/signup', signup);
 const seed = require('./routes/seed')
 app.use('/seed', seed);
 
+// v1
+const latestReading = require('./routes/v1/latestReading')
+app.use('/v1', latestReading);
+
 // start web server
 const port = process.env.PORT
 app.listen(port, () => {
