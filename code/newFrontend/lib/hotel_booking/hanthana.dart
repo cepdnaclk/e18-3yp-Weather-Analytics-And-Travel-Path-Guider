@@ -11,9 +11,9 @@
 // import 'package:best_flutter_ui_templates/home_screen.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
-
-
 import 'package:flutter/material.dart';
+import '../api/routes.dart';
+import '../api/responseModels.dart';
 
 void hanthana() => runApp(const MyApp());
 
@@ -73,7 +73,8 @@ class _ArticleDescription extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black54,
                 ),
               ),
@@ -157,68 +158,97 @@ class CustomListItemTwo extends StatelessWidget {
   }
 }
 
-class MyStatelessWidget extends StatelessWidget {
+class MyStatelessWidget extends StatefulWidget {
   const MyStatelessWidget({super.key});
 
   @override
+  State<MyStatelessWidget> createState() => _MyStatelessWidgetState();
+}
+
+class _MyStatelessWidgetState extends State<MyStatelessWidget> {
+  String temp = "Loading";
+  String humidity = "Loading";
+  String rain = "Loading";
+  String airQuality = "Loading";
+  String lightIntensity = "Loading";
+
+  void refreshData(String location) async {
+    LatestUpdateResponse response = await getLatestUpdateOfLocation(location);
+    print(response.lightIntensity);
+    setState(() {
+      temp = response.temperature;
+      humidity = response.humidity;
+      rain = response.isRaining;
+      lightIntensity = response.lightIntensity;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      refreshData("hanthana");
+    });
     return ListView(
       padding: const EdgeInsets.all(10.0),
       children: <Widget>[
         // Row
-              Row(
-        children:  <Widget>[
-          Image.asset('assets/images/weather3.gif',height: 250.0,width: 250.0,),
-        
-          Expanded(
-            child: Text('Deliver features faster', textAlign: TextAlign.center),
-          ),
-          Expanded(
-            child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
-          ),
-          
-        ],
-      ),
+        Row(
+          children: <Widget>[
+            Image.asset(
+              'assets/images/weather3.gif',
+              height: 250.0,
+              width: 250.0,
+            ),
+            Expanded(
+              child: Text('Date\n2022-12-21\n\nTime\n10.40am',
+                  textAlign: TextAlign.center),
+            )
+            // ),
+            // Expanded(
+            //   child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
+            // ),
+          ],
+        ),
         //////////
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/temperature.png'),
+          thumbnail: Image.asset('assets/images/temperature.png'),
           title: 'TEMPERATURE',
-          subtitle: 'Flutter continues to i.......... ',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: temp,
+          author: '',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/humidity.png'),
+          thumbnail: Image.asset('assets/images/humidity.png'),
           title: 'HUMIDITY',
-          subtitle: 'Flutter continues to improve an',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: humidity,
+          author: '',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
           thumbnail: Image.asset('assets/images/rain.png'),
           title: 'RAIN',
-          subtitle: 'Flutter continues ',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: rain,
+          author: '',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
-          thumbnail:Image.asset('assets/images/air.png'),
+          thumbnail: Image.asset('assets/images/air.png'),
           title: 'AIR QUALITY',
-          subtitle: 'Flutter continues to improve a',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          subtitle: '74',
+          author: '',
+          publishDate: '',
+          readDuration: '',
         ),
         CustomListItemTwo(
           thumbnail: Image.asset('assets/images/light.png'),
           title: 'LIGHT INTENSITY',
-          subtitle: 'Flutter once again improves and makes updates.',
-          author: 'Flutter',
-          publishDate: 'Feb 26',
-          readDuration: '12 mins',
+          subtitle: lightIntensity,
+          author: '',
+          publishDate: '',
+          readDuration: '',
         ),
       ],
     );

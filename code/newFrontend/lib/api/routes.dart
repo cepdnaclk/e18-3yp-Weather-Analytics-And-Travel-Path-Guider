@@ -3,7 +3,7 @@ import 'responseModels.dart';
 import 'package:http/http.dart' as http;
 import '../globals.dart' as globals;
 
-String baseURL = "http://127.0.0.1:8080";
+String baseURL = "http://weatheranalytics.tk:8080";
 Future<LoginResponse> login(String username, String password) async {
   final http.Response response;
   try {
@@ -86,21 +86,17 @@ Future<SignUpResponse> signUp(
 Future<LatestUpdateResponse> getLatestUpdateOfLocation(String location) async {
   final http.Response response;
   try {
+    print("$baseURL/v1/latestReading/$location");
     response = await http.get(Uri.parse("$baseURL/v1/latestReading/$location"));
+
     print("response from server " + response.body);
 
     if (response.statusCode == 200) {
-      return LatestUpdateResponse.fromJson(
-          jsonDecode(response.body.toString()));
+      print(jsonDecode(response.body.toString()));
+      return LatestUpdateResponse.fromJson(jsonDecode(response.body
+          .toString()
+          .substring(1, response.body.toString().length - 1)));
     } else if (response.statusCode == 409) {
-      // required this.dateTime,
-      // required this.location,
-      // required this.device_id,
-      // required this.topic,
-      // required this.temperature,
-      // required this.humidity,
-      // required this.isRaining,
-      // required this.lightIntensity,
       return const LatestUpdateResponse(
           dateTime: "",
           location: "",
@@ -116,6 +112,6 @@ Future<LatestUpdateResponse> getLatestUpdateOfLocation(String location) async {
     }
   } catch (e) {
     print(e);
+    print("Seems like no network or something")
   }
-  throw Exception("Something went wrong.");
 }
