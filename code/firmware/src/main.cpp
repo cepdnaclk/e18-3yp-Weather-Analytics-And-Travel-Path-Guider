@@ -160,7 +160,7 @@ void setup()
   Serial.println();
 }
 
-char msg[200];
+char msg[50];
 
 void loop()
 {
@@ -188,6 +188,7 @@ void loop()
   strcat(msg, lightSensorReading);
   strcat(msg, ",");
   strcat(msg, airQualitySensorReading);
+
   mqtt.publish(topicOut, msg);
   Serial.print("Sent msg to MQTT broker - ");
   Serial.println(msg);
