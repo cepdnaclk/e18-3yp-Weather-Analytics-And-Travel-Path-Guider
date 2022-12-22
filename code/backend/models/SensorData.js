@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SensorDataSchema = new Schema({
-    dateTime: Date,
+    dateTime: String,
     location: String,
     device_id: String,
     topic: String,
