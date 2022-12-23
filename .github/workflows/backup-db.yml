@@ -1,0 +1,30 @@
+name: Backup production database
+
+on:
+  schedule:
+    # # At 18:30 UTC on everyday (12.00 mid night in Sri Lanka)
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        with:
+          ref: main
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Commit and push into the main branch
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add --all
+          git commit -m "Database backup added by Github-Action" || echo "No changes"
+          git push
