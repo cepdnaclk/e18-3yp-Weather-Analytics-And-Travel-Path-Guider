@@ -36,25 +36,25 @@ PubSubClient mqtt(client);
 
 int RainSensorReading()
 {
-  Serial.print("RainSensorReading: ");
+  // Serial.print("RainSensorReading: ");
   int value = analogRead(RainSensorPIN);
-  Serial.println(value);
+  // Serial.println(value);
   return value;
 }
 
 int LightSensorReading()
 {
-  Serial.print("LightSensorReading: ");
+  // Serial.print("LightSensorReading: ");
   int value = analogRead(LightSensorPIN);
-  Serial.println(value);
+  // Serial.println(value);
   return value;
 }
 
 int AirQualitySensorReading()
 {
-  Serial.print("AirQualitySensorReading: ");
+  // Serial.print("AirQualitySensorReading: ");
   int value = analogRead(AirQualitySensorPIN);
-  Serial.println(value);
+  // Serial.println(value);
   return value;
 }
 
@@ -110,6 +110,7 @@ boolean mqttConnect()
 
 // reset the arduino from code
 void (*resetArduino)(void) = 0;
+int ledState = 0;
 
 void setup()
 {
@@ -129,6 +130,8 @@ void setup()
 
   // Air Quality Sensor
   pinMode(AirQualitySensorPIN, INPUT);
+
+  pinMode(LED_BUILTIN, OUTPUT);
 
   Serial.println("System start.");
   Serial.println("Modem: " + modem.getModemInfo());
@@ -168,6 +171,7 @@ void setup()
   }
 
   Serial.println();
+  Serial.println("id,temp,humidity,rain,light,air");
 }
 
 char msg[50];
@@ -201,6 +205,8 @@ void loop()
 
   mqtt.publish(topicOut, msg);
   Serial.print("Sent msg to MQTT broker - ");
+  digitalWrite(LED_BUILTIN, ledState);
+  ledState = ledState ? 0 : 1;
   Serial.println(msg);
 
   if (mqtt.connected())
