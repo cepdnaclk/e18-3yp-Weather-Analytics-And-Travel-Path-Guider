@@ -25,6 +25,7 @@ jobs:
         run: |
           pip install requests
 
+      # https://stackoverflow.com/questions/60477061/github-actions-how-to-deploy-to-remote-server-using-ssh
       - name: Setup SSH key pairs for SSH
         run: |
           mkdir -p ~/.ssh/
