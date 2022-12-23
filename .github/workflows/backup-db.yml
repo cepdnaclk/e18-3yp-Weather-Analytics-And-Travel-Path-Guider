@@ -37,6 +37,11 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
 
+      - name: Change timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Colombo"
+
       - name: Run python script
         run: |
           cd code/backend/database_backups/
