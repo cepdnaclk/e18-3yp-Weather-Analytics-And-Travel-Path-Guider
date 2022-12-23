@@ -108,6 +108,9 @@ boolean mqttConnect()
 //   delay(500);
 // }
 
+// reset the arduino from code
+void (*resetArduino)(void) = 0;
+
 void setup()
 {
   Serial.begin(9600);
@@ -151,9 +154,16 @@ void setup()
   mqtt.setServer(broker, 1883);
   // mqtt.setCallback(mqttCallback);
   Serial.println("Connecting to MQTT Broker: " + String(broker));
+  int count = 0;
   while (mqttConnect() == false)
   {
     Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+    count++;
+
+    if (count == 5)
+    {
+      resetArduino();
+    }
     continue;
   }
 
@@ -201,8 +211,8 @@ void loop()
   {
     Serial.println("MQTT Connection Dropped");
     Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
-    Serial.println("Running setup() again");
-    setup();
+    Serial.println("Resetting Arduino");
+    resetArduino();
   }
   delay(5000);
 
