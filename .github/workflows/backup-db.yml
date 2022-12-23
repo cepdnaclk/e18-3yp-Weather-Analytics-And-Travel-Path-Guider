@@ -20,14 +20,29 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+
       - name: Install required python modules
         run: |
           pip install requests
 
+      - name: Setup SSH key pairs for SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+
       - name: Run python script
         run: |
           cd code/backend/database_backups/
-          python3 backup_from_server.py
+          python3 backup_from_server.py $SSH_KEY_PATH
+        env:
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
 
       - name: Commit and push into the main branch
         run: |
