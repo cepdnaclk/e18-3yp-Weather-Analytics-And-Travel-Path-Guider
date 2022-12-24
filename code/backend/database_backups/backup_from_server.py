@@ -1,7 +1,7 @@
 # run in WSL
 import os
 import datetime
-import requests
+import requests  # pip install requests
 import sys
 
 numberOfRecords = requests.get("http://weatheranalytics.tk:8080/count").json()["count"]
