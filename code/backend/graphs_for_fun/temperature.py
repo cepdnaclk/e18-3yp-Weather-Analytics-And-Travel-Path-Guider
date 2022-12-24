@@ -3,7 +3,7 @@ import datetime
 import matplotlib.pyplot as plt
 import pytz
 
-data = requests.get("http://localhost:8080").json()
+data = requests.get("http://weatheranalytics.tk:8080").json()
 
 x = []
 temp = []
@@ -24,8 +24,7 @@ for each in data:
 
     lastUpdateTime = each["dateTime"]
 
-parsed = datetime.datetime.fromisoformat(lastUpdateTime)
-print("Last Updated: ", parsed.astimezone(pytz.timezone("Asia/Colombo")))
+print("Last Updated: ", lastUpdateTime)
 
 fig, axs = plt.subplots(4)
 axs[0].plot(x, temp)
