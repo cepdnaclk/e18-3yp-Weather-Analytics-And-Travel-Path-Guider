@@ -16,7 +16,7 @@ for eachFile in filesInCurrrentDirectory:
     numberOfRecordsBackedUpInThisBackup = (
         eachFile.split("T")[1].split("-")[3].split(".")[0]
     )
-    if numberOfRecordsBackedUpInThisBackup == numberOfRecords:
+    if int(numberOfRecordsBackedUpInThisBackup) == int(numberOfRecords):
         isAlreadyBackedUp = True
         break
 
@@ -32,3 +32,5 @@ if not isAlreadyBackedUp:
     os.system(
         f"scp -i {keyFilePath} Nipun@weatheranalytics.tk:/home/Nipun/dump.7z ./{currentDatetime}-{numberOfRecords}.7z"
     )
+else:
+    print("DB already backed up")
