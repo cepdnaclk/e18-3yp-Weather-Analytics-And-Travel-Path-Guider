@@ -5,9 +5,7 @@ const router = require("express").Router();
 
 router.get('/', async (req, res) => {
     console.log('Page requested ' + req.url);
-    res.json(await SensorData.find({
-        location: req.params.location
-    }).sort({ _id: -1 }).limit(100))
+    res.json(await SensorData.find().sort({ _id: -1 }).limit(100))
 })
 
 router.get('/count', async (req, res) => {
