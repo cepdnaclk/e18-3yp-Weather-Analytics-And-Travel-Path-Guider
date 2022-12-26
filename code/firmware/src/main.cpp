@@ -220,7 +220,7 @@ void loop()
     Serial.println("Resetting Arduino");
     resetArduino();
   }
-  // delay(5000);
+  // delay(1000);
 
   // // Delay between measurements.
   // delay(delayMS);

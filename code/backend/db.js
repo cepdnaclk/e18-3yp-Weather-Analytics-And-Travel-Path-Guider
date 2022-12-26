@@ -6,7 +6,9 @@ async function connectDB() {
     db.on("connected", () => {
         console.log("MongoDB Connected");
     });
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL, {
+        socketTimeoutMS: 999000, // Close sockets after x seconds of inactivity
+    });
 }
 
 async function disconnectDB() {
