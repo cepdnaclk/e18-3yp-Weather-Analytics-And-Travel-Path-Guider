@@ -3,12 +3,11 @@ const { Users } = require("../models/Users");
 
 const router = require("express").Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     console.log('Page requested ' + req.url);
-    SensorData.find(function (err, data) {
-        if (err) return console.error(err);
-        res.send(JSON.parse(JSON.stringify(data)));
-    })
+    res.json(await SensorData.find({
+        location: req.params.location
+    }).sort({ _id: -1 }).limit(100))
 })
 
 router.get('/count', async (req, res) => {
