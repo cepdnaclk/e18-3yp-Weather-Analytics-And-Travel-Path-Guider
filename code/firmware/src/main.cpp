@@ -112,6 +112,27 @@ boolean mqttConnect()
 void (*resetArduino)(void) = 0;
 int ledState = 0;
 
+void isEmergencyButtonPressed()
+{
+  if (digitalRead(2) == HIGH)
+  {
+    Serial.println("Button pressed");
+    mqtt.publish("emergency", "Emergency Button Pressed");
+    if (mqtt.connected())
+    {
+      mqtt.loop();
+      Serial.println("Emergency Signal Sent");
+    }
+    else
+    {
+      Serial.println("MQTT Connection Dropped");
+      Serial.println("Signal Quality: " + String(modem.getSignalQuality()));
+      Serial.println("Resetting Arduino");
+      resetArduino();
+    }
+  }
+}
+
 void setup()
 {
   Serial.begin(9600);
@@ -212,6 +233,11 @@ void loop()
   if (mqtt.connected())
   {
     mqtt.loop();
+    for (int i = 0; i < 5000; i++)
+    {
+      isEmergencyButtonPressed();
+      delay(1);
+    }
   }
   else
   {
@@ -220,7 +246,6 @@ void loop()
     Serial.println("Resetting Arduino");
     resetArduino();
   }
-  // delay(1000);
 
   // // Delay between measurements.
   // delay(delayMS);
