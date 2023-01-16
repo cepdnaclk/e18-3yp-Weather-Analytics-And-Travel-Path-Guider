@@ -31,9 +31,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      color: Color.fromARGB(255, 32, 45, 235),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 32, 45, 235),
           leading: BackButton(
               color: Color.fromARGB(255, 255, 255, 255), onPressed: homeScreen),
           title: const Text(_title),
@@ -75,6 +77,7 @@ class _ArticleDescription extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 32, 45, 235),
                 ),
               ),
               const Padding(padding: EdgeInsets.only(bottom: 0.0)),
@@ -84,7 +87,7 @@ class _ArticleDescription extends StatelessWidget {
                 //overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 16.0,
-                  color: Colors.black54,
+                  color: Color.fromARGB(255, 0, 0, 0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
