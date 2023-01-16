@@ -17,12 +17,12 @@ class _HelpScreenState extends State<HelpScreen> {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Container(
-      color: isLightMode ? AppTheme.nearlyWhite : AppTheme.nearlyBlack,
+      color: isLightMode ? AppTheme.nearlyWhite : Color.fromARGB(255, 32, 45, 235),
       child: SafeArea(
         top: false,
         child: Scaffold(
           backgroundColor:
-              isLightMode ? AppTheme.nearlyWhite : AppTheme.nearlyBlack,
+              isLightMode ? AppTheme.nearlyWhite : Color.fromARGB(255, 32, 45, 235),
           body: Column(
             children: <Widget>[
               Container(
@@ -45,7 +45,7 @@ class _HelpScreenState extends State<HelpScreen> {
               Container(
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
-                  'It looks like you are experiencing problems\nwith our sign up process. We are here to\nhelp so please get in touch with us',
+                  'It looks like you are experiencing problems\nwith our application. We are here to\nhelp so please get in touch with us',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 16,
