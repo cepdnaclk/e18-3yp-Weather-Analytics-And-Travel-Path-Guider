@@ -36,7 +36,7 @@ class HotelAppTheme {
       splashColor: Colors.white24,
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
-      backgroundColor: const Color(0xFFFFFFFF),
+      backgroundColor:  Color.fromARGB(255, 32, 45, 235),
       scaffoldBackgroundColor: const Color(0xFFF6F6F6),
       errorColor: const Color(0xFFB00020),
       buttonTheme: ButtonThemeData(

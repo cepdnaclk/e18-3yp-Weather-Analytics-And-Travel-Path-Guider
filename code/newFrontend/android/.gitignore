@@ -6,3 +6,5 @@ gradle-wrapper.jar
 /local.properties
 GeneratedPluginRegistrant.java
 NIPUN-upload-keystore.jks
+
+.\app\src\main\AndroidManifest.xml

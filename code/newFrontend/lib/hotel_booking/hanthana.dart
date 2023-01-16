@@ -14,9 +14,11 @@
 //[{"_id":"63a25db3102dfbfb478b7b91","dateTime":"2022-12-21T01:13:23.000Z","location":"hanthana","device_id":"1","topic":"test","temperature":"24",
 //"humidity":"80","isRaining":"1017","lightIntensity":"1001","__v":0}]
 
+import 'package:best_flutter_ui_templates/hotel_booking/hotel_list_view.dart';
 import 'package:flutter/material.dart';
 import '../api/routes.dart';
 import '../api/responseModels.dart';
+import '../home_screen.dart';
 
 void hanthana() => runApp(const MyApp());
 
@@ -31,7 +33,12 @@ class MyApp extends StatelessWidget {
       title: _title,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
+        appBar: AppBar(
+          leading: BackButton(
+              color: Color.fromARGB(255, 255, 255, 255), onPressed: homeScreen),
+          title: const Text(_title),
+          centerTitle: true,
+        ),
         body: const MyStatelessWidget(),
       ),
     );
@@ -175,13 +182,18 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
   String lightIntensity = "Loading";
   String time = "";
   String date = "";
+  
 
   void refreshData(String location) async {
+    //print("--------------------- response : Comming below");
     LatestUpdateResponse response = await getLatestUpdateOfLocation(location);
+
     // print(response.lightIntensity);
     // "dateTime": "2022-12-21T05:23:43.000Z",
+   // print("--------------------- response : $response");
 
     setState(() {
+      // ignore: todo
       // TODO: @NipunFernando convert this +00:00 timezone to +5:30 time
       time = response.dateTime.split("T")[1];
 
@@ -195,11 +207,10 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     Future.delayed(const Duration(milliseconds: 1000), () {
       refreshData("hanthana");
     });
-    
+
     return ListView(
       padding: const EdgeInsets.all(10.0),
       children: <Widget>[

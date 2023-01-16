@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hanthana.dart';
 
+import 'model/hanthan_travel_path.dart';
 import 'model/hotel_list_data.dart';
 
 class HotelListView extends StatelessWidget {
@@ -62,8 +63,7 @@ class HotelListView extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              color: HotelAppTheme.buildLightTheme()
-                                  .backgroundColor,
+                              color: Color.fromARGB(255, 255, 255, 255),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,10 +172,87 @@ class HotelListView extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
+                                            // ###################################################################
+                                             Container(
+                                              height: 60,
+                                              width: 330,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(100.0),
+                                                color: Color.fromARGB(255, 32, 45, 235),
+                                              ),
+                                              
+                                              child: Center(
+                                                child: TextButton(
+                                        style: ButtonStyle(
+                                          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                              if (states.contains(MaterialState.focused))
+                                                return Colors.red;
+                                              return null; // Defer to the widget's default.
+                                            }
+                                          ),
+                                        ),
+                                        onPressed: hanthana,
+                                        child:  Text(
+                                                  'VIEW WEATHER ANALYTICS',
+                                                  style: TextStyle(
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(255, 255, 255, 255),
+                                                    
+                                                  ),
+                                                ),
+                                              )
+                                              ),
+                                            ),
+                                            // ###################################################################
+                                             const SizedBox(
+                                                  width: 4,
+                                                  height:4,
+                                                ),
+                                            // ###################################################################
+                                             Container(
+                                              height: 60,
+                                              width: 330,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(100.0),
+                                                color: Color.fromRGBO(16, 182, 41, 1),
+                                              ),
+                                              
+                                              child: Center(
+                                                child: TextButton(
+                                        style: ButtonStyle(
+                                          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                              if (states.contains(MaterialState.focused))
+                                                return Colors.red;
+                                              return null; // Defer to the widget's default.
+                                            }
+                                          ),
+                                        ),
+                                        onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return const HanthanaTravelPath();
+              }));},
+                                        child:  Text(
+                                                  'VIEW TRAVEL PATH',
+                                                  style: TextStyle(
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(255, 255, 255, 255),
+                                                    
+                                                  ),
+                                                ),
+                                              )
+                                              ),
+                                            ),
+                                            // ###################################################################
                                           ],
+                                          // --------------------------------------------------------------------
+                                          
                                         ),
                                       ),
                                     ),
+                                    
                                   ),
                                   // Padding(
                                   //   padding: const EdgeInsets.only(
