@@ -162,7 +162,7 @@ class CustomRangeThumbShape extends RangeSliderThumbShape {
               Offset(center.dx - 12, center.dy - 12)))
           ..fillType = PathFillType.evenOdd,
         Paint()
-          ..color = Colors.black.withOpacity(0.5)
+          ..color = Color.fromARGB(255, 255, 255, 255).withOpacity(0.5)
           ..maskFilter =
               MaskFilter.blur(BlurStyle.normal, convertRadiusToSigma(8)));
 
