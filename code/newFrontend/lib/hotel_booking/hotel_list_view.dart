@@ -83,8 +83,10 @@ class HotelListView extends StatelessWidget {
                                               hotelData!.titleTxt,
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 22,
+                                                color: Color.fromARGB(255, 32, 45, 235),
+                                                
                                               ),
                                             ),
                                             Row(
@@ -97,8 +99,7 @@ class HotelListView extends StatelessWidget {
                                                   hotelData!.subTxt,
                                                   style: TextStyle(
                                                       fontSize: 14,
-                                                      color: Colors.grey
-                                                          .withOpacity(0.8)),
+                                                      color: Color.fromARGB(255, 32, 45, 235)),
                                                 ),
                                                 const SizedBox(
                                                   width: 4,
@@ -117,8 +118,7 @@ class HotelListView extends StatelessWidget {
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
+                                                        color: Color.fromARGB(255, 32, 45, 235)),
                                                   ),
                                                 ),
                                               ],
@@ -166,8 +166,7 @@ class HotelListView extends StatelessWidget {
                                                     ' ${hotelData!.reviews} Reviews',
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
+                                                        color:Color.fromARGB(255, 32, 45, 235)),
                                                   ),
                                                 ],
                                               ),
@@ -311,7 +310,7 @@ class HotelListView extends StatelessWidget {
             style: TextStyle(
               fontSize: 15.0,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 1, 0),
+              color: Color.fromARGB(255, 32, 45, 235),
               
             ),
           ),

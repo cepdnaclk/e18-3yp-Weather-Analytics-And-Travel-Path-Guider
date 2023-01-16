@@ -17,11 +17,11 @@ class _InviteFriendState extends State<InviteFriend> {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Container(
-      color: isLightMode ? AppTheme.white : AppTheme.nearlyBlack,
+      color: isLightMode ? AppTheme.white : Color.fromARGB(255, 32, 45, 235),
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: isLightMode ? AppTheme.white : AppTheme.nearlyBlack,
+          backgroundColor: isLightMode ? AppTheme.white : Color.fromARGB(255, 32, 45, 235),
           body: Column(
             children: <Widget>[
               Container(
@@ -38,7 +38,7 @@ class _InviteFriendState extends State<InviteFriend> {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: isLightMode ? Colors.black : Colors.white,
+                    color: isLightMode ? Color.fromARGB(255, 32, 45, 235) : Colors.white,
                   ),
                 ),
               ),

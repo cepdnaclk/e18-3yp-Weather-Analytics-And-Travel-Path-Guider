@@ -55,6 +55,7 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
         appBar: AppBar(
           title: const Text('Google Map App'),
           centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 32, 45, 235),
         ),
         body: GoogleMap(
           initialCameraPosition: initialPosition,
@@ -70,7 +71,7 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
             Polyline(
               polylineId: PolylineId('2'),
               points: mspoints,
-              color: Colors.blue,
+              color: Color.fromARGB(255, 32, 45, 235),
               width: 3,
             ),
           },
@@ -113,6 +114,7 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
                   label: Text("Mark Location"),
                   icon: const Icon(Icons.add_circle_outline),
                   heroTag: "btn0",
+                  backgroundColor: Color.fromARGB(255, 32, 45, 235),
                 ),
               ),
             ),
@@ -162,6 +164,7 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
                   label: Text("Show Milestones"),
                   icon: const Icon(Icons.flag),
                   heroTag: "btn1",
+                  backgroundColor: Color.fromARGB(255, 32, 45, 235),
                 ),
               ),
             ),
