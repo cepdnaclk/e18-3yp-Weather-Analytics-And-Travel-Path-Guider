@@ -127,16 +127,37 @@ class SignInDemoState extends State<SignInDemo> {
             title: Text(user.displayName ?? ''),
             subtitle: Text(user.email),
           ),
-          const Text('Signed in successfully.'),
+          const Text('Signed in successfully.',,style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Color.fromARGB(255, 32, 45, 235)),),
           Text(_contactText),
           ElevatedButton(
             onPressed: _handleSignOut,
-            child: const Text('SIGN OUT'),
+            child: const Text('SIGN OUT',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25.0,
+                        color: Color.fromARGB(255, 255, 255, 255)),),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 32, 45, 235),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
           ),
           ElevatedButton(
             // child: const Text('REFRESH'),
             // onPressed: () => _handleGetContact(user),
-            child: const Text('CONTINUE'),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 32, 45, 235),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
+            child: const Text('CONTINUE',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25.0,
+                        color: Color.fromARGB(255, 255, 255, 255)),),
             onPressed: homeScreen,
           ),
         ],
@@ -145,10 +166,22 @@ class SignInDemoState extends State<SignInDemo> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          const Text('You are not currently signed in.'),
+          const Text('You are not currently signed in.',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Color.fromARGB(255, 32, 45, 235)),),
           ElevatedButton(
             onPressed: _handleSignIn,
-            child: const Text('SIGN IN'),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 32, 45, 235),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
+            child: const Text('SIGN IN',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25.0,
+                        color: Color.fromARGB(255, 255, 255, 255)),),
           ),
         ],
       );
@@ -160,6 +193,8 @@ class SignInDemoState extends State<SignInDemo> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Google Sign In'),
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 32, 45, 235),
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),

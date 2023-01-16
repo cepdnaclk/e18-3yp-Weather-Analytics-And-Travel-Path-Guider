@@ -143,7 +143,7 @@ class SignInDemoState extends State<SignInDemo> {
           const Text('You are not currently signed in.'),
           ElevatedButton(
             onPressed: _handleSignIn,
-            child: const Text('SIGN IN'),
+            child: const Text('SIGN INx'),
           ),
         ],
       );
@@ -154,7 +154,8 @@ class SignInDemoState extends State<SignInDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Google Sign In'),
+          title: const Text('Google Signxx In'),
+          centerTitle: true,
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
