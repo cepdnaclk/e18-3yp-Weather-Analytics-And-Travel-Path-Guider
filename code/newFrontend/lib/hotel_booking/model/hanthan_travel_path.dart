@@ -8,14 +8,14 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 
-class CurrentLocationScreen extends StatefulWidget {
-  const CurrentLocationScreen({Key? key}) : super(key: key);
+class HanthanaTravelPath extends StatefulWidget {
+  const HanthanaTravelPath({Key? key}) : super(key: key);
 
   @override
-  State<CurrentLocationScreen> createState() => _CurrentLocationScreenState();
+  State<HanthanaTravelPath> createState() => _CurrentLocationScreenState();
 }
 
-class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
+class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
   late GoogleMapController googleMapController;
   static const CameraPosition initialPosition = CameraPosition(
       target: LatLng(7.253924853399335, 80.59193258728561), zoom: 18.0);

@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hanthana.dart';
 
+import 'model/hanthan_travel_path.dart';
 import 'model/hotel_list_data.dart';
 
 class HotelListView extends StatelessWidget {
@@ -230,7 +231,9 @@ class HotelListView extends StatelessWidget {
                                             }
                                           ),
                                         ),
-                                        onPressed: hanthana,
+                                        onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return const HanthanaTravelPath();
+              }));},
                                         child:  Text(
                                                   'VIEW TRAVEL PATH',
                                                   style: TextStyle(
