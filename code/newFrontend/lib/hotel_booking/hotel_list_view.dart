@@ -172,10 +172,48 @@ class HotelListView extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
+                                            // ###################################################################
+                                             Container(
+                                              height: 60,
+                                              width: 330,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(100.0),
+                                                color: Color.fromRGBO(16, 182, 41, 1),
+                                              ),
+                                              
+                                              child: Center(
+                                                child: TextButton(
+                                        style: ButtonStyle(
+                                          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                              if (states.contains(MaterialState.focused))
+                                                return Colors.red;
+                                              return null; // Defer to the widget's default.
+                                            }
+                                          ),
+                                        ),
+                                        onPressed: hanthana,
+                                        child:  Text(
+                                                  'VIEW WEATHER ANALYTICS',
+                                                  style: TextStyle(
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(255, 0, 1, 0),
+                                                    
+                                                  ),
+                                                ),
+                                              )
+                                              ),
+                                            ),
+                                            // ###################################################################
+                                            
                                           ],
+                                          // --------------------------------------------------------------------
+                                          
                                         ),
                                       ),
                                     ),
+                                    
                                   ),
                                   // Padding(
                                   //   padding: const EdgeInsets.only(
