@@ -238,7 +238,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             style: TextStyle(
                                 fontWeight: FontWeight.w100,
                                 fontSize: 16,
-                                color: Colors.grey.withOpacity(0.8)),
+                                color: Color.fromARGB(255, 32, 45, 235)),
                           ),
                           const SizedBox(
                             height: 8,
@@ -248,6 +248,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
+                              color: Color.fromARGB(255, 32, 45, 235),
                             ),
                           ),
                         ],
@@ -328,11 +329,14 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     onChanged: (String txt) {},
                     style: const TextStyle(
                       fontSize: 18,
+                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
                     cursorColor: HotelAppTheme.buildLightTheme().primaryColor,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Hanthana...',
+                      hintText: 'Type search text ...',
+                       hintStyle: TextStyle(fontSize: 15.0, color: Color.fromARGB(255, 255, 255, 255)),
+                      iconColor: Color.fromARGB(255, 32, 45, 235),
                     ),
                   ),
                 ),
@@ -406,10 +410,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '4 destinations available',
+                      '5 destinations available',
                       style: TextStyle(
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ),
@@ -442,6 +447,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
                           Padding(
@@ -530,10 +536,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
             Expanded(
               child: Center(
                 child: Text(
-                  'Explore',
+                  'WhetherTravel',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
               ),
@@ -559,7 +566,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     ),
                   ),
                   Material(
-                    color: Colors.transparent,
+                    color: Color.fromARGB(0, 255, 255, 255),
                     child: InkWell(
                       borderRadius: const BorderRadius.all(
                         Radius.circular(32.0),

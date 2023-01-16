@@ -127,7 +127,7 @@ class SignInDemoState extends State<SignInDemo> {
             title: Text(user.displayName ?? ''),
             subtitle: Text(user.email),
           ),
-          const Text('Signed in successfully.',,style: TextStyle(
+          const Text('Signed in successfully.',style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
                         color: Color.fromARGB(255, 32, 45, 235)),),
