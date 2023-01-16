@@ -78,12 +78,13 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
             googleMapController = controller;
           },
         ),
-        floatingActionButton: Column(
+        floatingActionButton:Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            SizedBox(width: 5),
             Container(
               height: 45.0,
-              width: 200.0,
+              width: 135.0,
               child: FittedBox(
                 child: FloatingActionButton.extended(
                   onPressed: () async {
@@ -116,12 +117,12 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
               ),
             ),
 
-            SizedBox(height: 2),
+           // SizedBox(height: 2),
 
             // --------------------------------------------- Show Milestones -------------------------------------------------
             Container(
               height: 45.0,
-              width: 200.0,
+              width: 150.0,
               child: FittedBox(
                 child: FloatingActionButton.extended(
                   onPressed: () async {
@@ -165,12 +166,12 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
               ),
             ),
 
-            SizedBox(height: 2),
+            //SizedBox(height: 2),
 
             // --------------------------------------------------------------------------
             Container(
               height: 45.0,
-              width: 200.0,
+              width: 120.0,
               child: FittedBox(
                 child: FloatingActionButton.extended(
                   onPressed: () async {
@@ -225,7 +226,7 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
                       await Future.delayed(const Duration(seconds: 5));
                     }
                   },
-                  label: Text("Track My Path"),
+                  label: Text("Track Path"),
                   icon: const Icon(Icons.navigation),
                   heroTag: "btn2",
                   backgroundColor: Colors.red,
@@ -233,7 +234,8 @@ class _CurrentLocationScreenState extends State<HanthanaTravelPath> {
               ),
             ),
           ],
-        ));
+        )
+        );
   }
 
   Future<Position> _determinePosition() async {

@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          backgroundColor: Color(0xFF8185E2),
+          backgroundColor: Color.fromARGB(255, 60, 66, 222),
           body: Center(
             child: Column(
               children: <Widget>[
@@ -208,7 +208,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   child: Text(
                     "For TEsting".toUpperCase(),
                     style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 10.0,
                         fontWeight: FontWeight.bold,
                         color: color),
                   ),
@@ -217,8 +217,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 ),
                 
    Container(
-        height: 60,
-        width: 270,
+        height: 30,
+        width: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
           color: Colors.white,
@@ -239,9 +239,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   child:  Text(
             'GO TO APP',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF8185E2),
+              color: Color.fromARGB(255, 60, 66, 222),
               
             ),
           ),
@@ -293,7 +293,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF8185E2),
+              color:Color.fromARGB(255, 32, 45, 235),
               
             ),
           ),

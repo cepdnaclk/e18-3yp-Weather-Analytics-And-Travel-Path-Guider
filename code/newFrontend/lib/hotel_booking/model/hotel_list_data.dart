@@ -63,5 +63,14 @@ class HotelListData {
       rating: 4.5,
       perNight: 200,
     ),
+     HotelListData(
+      imagePath: 'assets/hotel/efac.jfif',
+      titleTxt: 'Faculty of Engineering',
+      subTxt: 'Kandy District',
+      dist: 2.0,
+      reviews: 240,
+      rating: 4.5,
+      perNight: 200,
+    ),
   ];
 }

@@ -182,13 +182,15 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
   String lightIntensity = "Loading";
   String time = "";
   String date = "";
+  
 
   void refreshData(String location) async {
+    //print("--------------------- response : Comming below");
     LatestUpdateResponse response = await getLatestUpdateOfLocation(location);
 
     // print(response.lightIntensity);
     // "dateTime": "2022-12-21T05:23:43.000Z",
-    print(response);
+   // print("--------------------- response : $response");
 
     setState(() {
       // ignore: todo
