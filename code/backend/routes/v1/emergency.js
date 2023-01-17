@@ -1,9 +1,11 @@
 const router = require("express").Router();
-const { Users } = require("../../models/Users");
+const { EmergencyButtonPress } = require("../../models/EmergencyButtonPress");
 
 
 router.get('/lastEmergencyButtonPress', async (req, res) => {
-    res.send("123");
+    res.json(await EmergencyButtonPress.find({
+        location: req.params.location
+    }).sort({ _id: -1 }).limit(1));
 })
 
 
