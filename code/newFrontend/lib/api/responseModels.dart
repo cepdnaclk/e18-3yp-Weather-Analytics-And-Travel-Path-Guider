@@ -70,3 +70,24 @@ class LatestUpdateResponse {
         lightIntensity: json['lightIntensity']);
   }
 }
+
+class lastEmergencyButtonPressResponse {
+  // [{"_id":"63c667e8359b8b76c94f0475","dateTime":"1/17/2023, 2:48:32 PM","location":"hanthana","device_id":"1","__v":0}]
+  final String dateTime;
+  final String location;
+  final String device_id;
+
+  const lastEmergencyButtonPressResponse({
+    required this.dateTime,
+    required this.location,
+    required this.device_id,
+  });
+  
+  factory lastEmergencyButtonPressResponse.fromJson(Map<String, dynamic> json) {
+    return lastEmergencyButtonPressResponse(
+      dateTime: json['dateTime'],
+      location: json['location'],
+      device_id: json['device_id'],
+    );
+  }
+}

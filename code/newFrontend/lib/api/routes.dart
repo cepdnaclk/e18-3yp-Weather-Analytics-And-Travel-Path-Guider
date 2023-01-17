@@ -117,3 +117,35 @@ Future<LatestUpdateResponse> getLatestUpdateOfLocation(String location) async {
     return failed;
   }
 }
+
+Future<lastEmergencyButtonPressResponse> getLastEmergencyButtonPress() async {
+  final http.Response response;
+  lastEmergencyButtonPressResponse failed =
+      const lastEmergencyButtonPressResponse(
+    dateTime: "",
+    location: "",
+    device_id: "",
+  );
+  try {
+    print("$baseURL/v1/");
+    response =
+        await http.get(Uri.parse("$baseURL/v1/lastEmergencyButtonPress"));
+
+    print("response from server " + response.body);
+
+    if (response.statusCode == 200) {
+      print(jsonDecode(response.body.toString()));
+      return lastEmergencyButtonPressResponse.fromJson(jsonDecode(response.body
+          .toString()
+          .substring(1, response.body.toString().length - 1)));
+    } else if (response.statusCode == 409) {
+      return failed;
+    } else {
+      throw Exception("Something went wrong.");
+    }
+  } catch (e) {
+    print(e);
+    print("Seems like no network or something");
+    return failed;
+  }
+}
