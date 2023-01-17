@@ -29,7 +29,7 @@ app.use('/seed', seed);
 
 // v1
 const latestReading = require('./routes/v1/latestReading')
-const emergencyButton = require('./routes/emergency');
+const emergencyButton = require('./routes/v1/emergency');
 app.use('/v1', latestReading);
 app.use('/v1',emergencyButton);
 
