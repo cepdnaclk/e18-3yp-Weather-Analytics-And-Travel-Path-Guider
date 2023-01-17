@@ -29,7 +29,9 @@ app.use('/seed', seed);
 
 // v1
 const latestReading = require('./routes/v1/latestReading')
+const emergencyButton = require('./routes/emergency');
 app.use('/v1', latestReading);
+app.use('/v1',emergencyButton);
 
 // start web server
 const port = process.env.PORT

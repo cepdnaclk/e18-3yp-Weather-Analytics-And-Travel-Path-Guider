@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Users } = require("../models/Users");
 
 
-router.post('/', async (req, res) => {
+router.get('/lastEmergencyButtonPress', async (req, res) => {
 
 })
 
