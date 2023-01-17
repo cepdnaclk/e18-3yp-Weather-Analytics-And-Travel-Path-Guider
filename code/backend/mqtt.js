@@ -18,9 +18,14 @@ function run() {
   mqttClient.on("connect", function () {
     mqttClient.subscribe("test", function (err) {
       if (!err) {
-        console.log("MQTT Connected");
+        console.log("MQTT test Connected");
       }
     });
+    mqttClient.subscribe("emergency", function (err) {
+        if (!err) {
+          console.log("MQTT emergency Connected");
+        }
+      });
   });
 
   // when a new msg arrives on mqtt
